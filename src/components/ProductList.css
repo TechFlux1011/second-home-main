@@ -1,0 +1,30 @@
+/* src/components/ProductList.css */
+.product-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .product-list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .product-list li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+    text-align: center;
+  }
+  
+  .product-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+  }
+  

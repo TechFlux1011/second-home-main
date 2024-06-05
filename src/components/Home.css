@@ -1,0 +1,219 @@
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Four columns */
+  gap: 20px;
+}
+
+.product-card {
+  position: relative;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease; /* Add transition for smooth transformation */
+}
+
+.product-card::before {
+  content: "";
+  display: block;
+  padding-top: 100%; /* Aspect ratio 1:1 */
+}
+
+.product-card img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Maintain aspect ratio and fill the space */
+}
+
+.product-card .price {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  color: white;
+  padding: 5px 10px;
+  font-weight: bold;
+  border-radius: 5px; /* Ensure rounded corners for the price display */
+}
+
+.expanded-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.expanded-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 800px;
+  width: 90%;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  gap: 20px;
+}
+
+.expanded-content .image-container {
+  width: 100%;
+  max-width: 200px; /* Fixed width for the image container */
+  aspect-ratio: 3 / 4; /* Aspect ratio 3:4 */
+}
+
+.expanded-content img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.expanded-content h2 {
+  margin: 0;
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.expanded-content p {
+  margin: 10px 0;
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.add-to-cart {
+  grid-column: 1 / span 2;
+  grid-row: 2;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  justify-self: start; /* Align button to start */
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.container {
+  position: relative;
+}
+
+.cart-container {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1000; /* Ensure it is on top of other elements */
+}
+
+.cart-button {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.cart-count {
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 5px 10px;
+  margin-left: 10px;
+  font-size: 14px;
+}
+
+.cart-dropdown {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cart-dropdown ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.cart-item:last-child {
+  border-bottom: none;
+}
+
+.cart-item-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.cart-item-details {
+  flex-grow: 1;
+}
+
+.cart-item-details span:first-child {
+  display: block;
+  font-weight: bold;
+}
+
+.cart-item-details span:last-child {
+  color: #777;
+}
+
+.remove-button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #ccc;
+}
+
+.checkout-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
