@@ -217,3 +217,13 @@
   border-radius: 5px;
   cursor: pointer;
 }
+
+.header {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  max-width: 50px;
+  margin-right: 10x;
+}

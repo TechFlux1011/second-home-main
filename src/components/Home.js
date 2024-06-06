@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './Home.css'; // Import CSS file for styling
 import { CartContext } from '../CartContext'; // Import CartContext
-
+import logo from '../logo.jpg' ;
 const Home = () => {
   const [products, setProducts] = useState([]);
   const [expandedProduct, setExpandedProduct] = useState(null); // Track the currently expanded product
@@ -69,7 +69,10 @@ const Home = () => {
           </div>
         )}
       </div>
-      <h1>Welcome to Second Home</h1>
+      <div className="header">
+        <img src={logo} alt="Logo" className="logo" />
+        <h1>Welcome to Second Home</h1>
+      </div>
       <h2>Featured Products</h2>
       <div className="product-grid">
         {products.map((product) => (
