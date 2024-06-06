@@ -76,7 +76,10 @@ const Home = () => {
       <div className="header-title-container">
         <h1 className="header-title">Welcome to Second Home</h1>
       </div>
-      <h2>Featured Products</h2>
+      <div className='header-tab-row'>
+        <button className='header-tab'><h2>Featured Products</h2></button>
+      </div>
+      
       <div className="product-grid">
         {products.map((product) => (
           <div
