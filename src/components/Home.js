@@ -9,6 +9,7 @@ const Home = () => {
   const [showCart, setShowCart] = useState(false); // Track cart dropdown visibility
   const { cart, addToCart, removeFromCart } = useContext(CartContext); // Use cart from CartContext
   const expandedContentRef = useRef(null);
+  const [descriptionExpanded, setDescriptionExpanded] = useState(false); // Track description expansion
 
   useEffect(() => {
     fetch('https://fakestoreapi.com/products')
@@ -19,6 +20,7 @@ const Home = () => {
   // Function to handle expanding a product
   const handleExpand = (product) => {
     setExpandedProduct(product);
+    setDescriptionExpanded(false); // Reset description expansion when a new product is expanded
   };
 
   // Function to handle closing the expanded product
@@ -95,9 +97,19 @@ const Home = () => {
             </div>
             <div>
               <h2>{expandedProduct.title}</h2>
-              <p>{expandedProduct.description}</p>
+              <div className={`description ${descriptionExpanded ? 'collapsed' : ''}`}>
+                {expandedProduct.description}
+              </div>
+              {!descriptionExpanded && (
+                <button
+                  className="read-more-button"
+                  onClick={() => setDescriptionExpanded(true)}
+                >
+                  Read More
+                </button>
+              )}
             </div>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
+            <div className="add-to-cart-container">
               <div className="price">${expandedProduct.price}</div>
               <button className="add-to-cart" onClick={() => handleAddToCart(expandedProduct)}>Add to Cart</button>
             </div>
