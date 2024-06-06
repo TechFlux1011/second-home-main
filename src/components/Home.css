@@ -26,8 +26,8 @@
 
 .product-card {
   position: relative;
-  border: 1px solid #ccc;
-  border-radius: 5%;
+  border: none;
+  border-radius: 7%;
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.3s ease; /* Add transition for smooth transformation */
@@ -73,7 +73,7 @@
 }
 
 .expanded-content {
-  background-color: white;
+  background-color: #222222;
   padding: 20px;
   border-radius: 10px;
   max-width: 80%;
@@ -102,12 +102,16 @@
 
 .expanded-content h2 {
   margin: 0;
+  color: #FFB6A0;
+  text-decoration: transparent;
+  padding-bottom: 1rem;
 }
 
 .expanded-content .description {
   overflow: hidden;
   max-height: 150px; /* Limit the height of the description */
   text-overflow: ellipsis;
+  color: white;
 }
 
 .expanded-content .description.collapsed {
@@ -127,11 +131,12 @@
 .add-to-cart-container {
   display: flex;
   align-items: center;
-  background-color: white;
+  background-color: #222222;
 }
 
 .add-to-cart-container .price {
   font-size: 1.5rem;
+  color: white;
   font-weight: bold;
   margin-right: 20px; /* Adjust spacing as needed */
   align-self: center;

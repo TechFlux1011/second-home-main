@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import './Navbar.css'; // Import CSS file for styling
-import logo from '../logo.jpg'; // Import the logo image
 import { CartContext } from '../CartContext'; // Import CartContext
+import logo from '../logo.jpg'; // Import the logo image
 
 const Navbar = ({ toggleCart, showCart, cart, removeFromCart, getTotalPrice }) => {
   return (
@@ -14,7 +14,7 @@ const Navbar = ({ toggleCart, showCart, cart, removeFromCart, getTotalPrice }) =
       </div>
       <div className="cart-container">
         <button className="cart-button" onClick={toggleCart}>
-          Cart
+          View Cart
           <span className="cart-count">{cart.length}</span> {/* Use cart length */}
         </button>
         {showCart && (

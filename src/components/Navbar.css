@@ -2,7 +2,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 99%;
+    width: 96.6%;
     display: flex;
     align-items: center;
     justify-content: space-between; /* Ensure space between logo, title, and cart button */
@@ -30,8 +30,9 @@
   
   .cart-container {
     position: relative;
-    top:auto;
-    padding-right: 10px;
+    top: auto;
+    right: 10px;
+    z-index: 1000; /* Ensure it is on top of other elements */
   }
   
   .cart-button {
@@ -86,6 +87,7 @@
     height: 50px;
     object-fit: cover;
     margin-right: 10px;
+    border-radius: 15%;
   }
   
   .cart-item-details {
@@ -124,5 +126,8 @@
     color: white;
     border: none;
     padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
   }
+  
   
