@@ -12,6 +12,18 @@
   padding: 20px;
 }
 
+@media (min-width: 600px) {
+  .product-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust the minmax value as needed */
+  }
+}
+
+@media (min-width: 900px) {
+  .product-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust the minmax value as needed */
+  }
+}
+
 .product-card {
   position: relative;
   border: 1px solid #ccc;
@@ -107,6 +119,14 @@
   cursor: pointer;
   justify-self: start; /* Align button to start */
 }
+
+.expanded-content .price {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-right: 20px; /* Adjust spacing as needed */
+  align-self: center;
+}
+
 
 .close-button {
   position: absolute;

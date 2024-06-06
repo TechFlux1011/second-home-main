@@ -74,7 +74,7 @@ const Home = () => {
       <div className="header-title-container">
         <h1 className="header-title">Welcome to Second Home</h1>
       </div>
-      <div header-tab-row><h2 className='header-tab'>Featured Products</h2></div>
+      <h2>Featured Products</h2>
       <div className="product-grid">
         {products.map((product) => (
           <div
@@ -97,7 +97,10 @@ const Home = () => {
               <h2>{expandedProduct.title}</h2>
               <p>{expandedProduct.description}</p>
             </div>
-            <button className="add-to-cart" onClick={() => handleAddToCart(expandedProduct)}>Add to Cart</button>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <div className="price">${expandedProduct.price}</div>
+              <button className="add-to-cart" onClick={() => handleAddToCart(expandedProduct)}>Add to Cart</button>
+            </div>
           </div>
         </div>
       )}
