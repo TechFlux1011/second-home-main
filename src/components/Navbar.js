@@ -1,0 +1,45 @@
+import React, { useContext } from 'react';
+import './Navbar.css'; // Import CSS file for styling
+import logo from '../logo.jpg'; // Import the logo image
+import { CartContext } from '../CartContext'; // Import CartContext
+
+const Navbar = ({ toggleCart, showCart, cart, removeFromCart, getTotalPrice }) => {
+  return (
+    <nav className="navbar">
+      <div className="navbar-logo">
+        <img src={logo} alt="Second Home Logo" className="navbar-logo-img" />
+      </div>
+      <div className="navbar-title">
+        <h1>Second Home</h1>
+      </div>
+      <div className="cart-container">
+        <button className="cart-button" onClick={toggleCart}>
+          Cart
+          <span className="cart-count">{cart.length}</span> {/* Use cart length */}
+        </button>
+        {showCart && (
+          <div className="cart-dropdown">
+            <ul>
+              {cart.map((item, index) => (
+                <li key={index} className="cart-item">
+                  <img src={item.image} alt={item.title} className="cart-item-image" />
+                  <div className="cart-item-details">
+                    <span>{item.title}</span>
+                    <span>${item.price}</span>
+                  </div>
+                  <button className="remove-button" onClick={() => removeFromCart(index)}>Remove</button>
+                </li>
+              ))}
+            </ul>
+            <div className="cart-total">
+              <span>Total: ${getTotalPrice()}</span>
+              <button className="checkout-button">Checkout</button>
+            </div>
+          </div>
+        )}
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar;

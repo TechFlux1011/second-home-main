@@ -1,12 +1,14 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import './Home.css'; // Import CSS file for styling
 import { CartContext } from '../CartContext'; // Import CartContext
-import logo from '../logo.jpg' ;
+import Navbar from './Navbar'; // Import Navbar
+
 const Home = () => {
   const [products, setProducts] = useState([]);
   const [expandedProduct, setExpandedProduct] = useState(null); // Track the currently expanded product
   const [showCart, setShowCart] = useState(false); // Track cart dropdown visibility
   const { cart, addToCart, removeFromCart } = useContext(CartContext); // Use cart from CartContext
+  const expandedContentRef = useRef(null);
 
   useEffect(() => {
     fetch('https://fakestoreapi.com/products')
@@ -41,39 +43,38 @@ const Home = () => {
     return cart.reduce((total, item) => total + item.price, 0).toFixed(2);
   };
 
+  // Event listener for clicks outside the expanded content
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (expandedContentRef.current && !expandedContentRef.current.contains(event.target)) {
+        handleClose();
+      }
+    };
+
+    if (expandedProduct) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [expandedProduct]);
+
   return (
     <div className="container">
-      <div className="cart-container">
-        <button className="cart-button" onClick={toggleCart}>
-          View Cart
-          <span className="cart-count">{cart.length}</span> {/* Use cart length */}
-        </button>
-        {showCart && (
-          <div className="cart-dropdown">
-            <ul>
-              {cart.map((item, index) => (
-                <li key={index} className="cart-item">
-                  <img src={item.image} alt={item.title} className="cart-item-image" />
-                  <div className="cart-item-details">
-                    <span>{item.title}</span>
-                    <span>${item.price}</span>
-                  </div>
-                  <button className="remove-button" onClick={() => removeFromCart(index)}>Remove</button>
-                </li>
-              ))}
-            </ul>
-            <div className="cart-total">
-              <span>Total: ${getTotalPrice()}</span>
-              <button className="checkout-button">Checkout</button>
-            </div>
-          </div>
-        )}
+      <Navbar 
+        toggleCart={toggleCart} 
+        showCart={showCart} 
+        cart={cart}
+        removeFromCart={removeFromCart}
+        getTotalPrice={getTotalPrice}
+      /> {/* Include Navbar */}
+      <div className="header-title-container">
+        <h1 className="header-title">Welcome to Second Home</h1>
       </div>
-      <div className="header">
-        <img src={logo} alt="Logo" className="logo" />
-        <h1>Welcome to Second Home</h1>
-      </div>
-      <h2>Featured Products</h2>
+      <div header-tab-row><h2 className='header-tab'>Featured Products</h2></div>
       <div className="product-grid">
         {products.map((product) => (
           <div
@@ -88,8 +89,7 @@ const Home = () => {
       </div>
       {expandedProduct && (
         <div className="expanded-overlay">
-          <div className="expanded-content">
-            <button className="close-button" onClick={handleClose}>X</button>
+          <div className="expanded-content" ref={expandedContentRef}>
             <div className="image-container">
               <img src={expandedProduct.image} alt={expandedProduct.title} />
             </div>
