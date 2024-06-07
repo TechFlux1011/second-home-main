@@ -23,11 +23,10 @@
   }
 }
 
-
 .product-card {
   position: relative;
-  border: none;
-  border-radius: 7%;
+  border: 1px solid #ccc;
+  border-radius: 5%;
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.3s ease; /* Add transition for smooth transformation */
@@ -73,7 +72,7 @@
 }
 
 .expanded-content {
-  background-color: #222222;
+  background-color: white;
   padding: 20px;
   border-radius: 10px;
   max-width: 80%;
@@ -96,22 +95,18 @@
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: scale-down;
+  object-fit: cover;
   border-radius: 10px;
 }
 
 .expanded-content h2 {
   margin: 0;
-  color: #FFB6A0;
-  text-decoration: transparent;
-  padding-bottom: 1rem;
 }
 
 .expanded-content .description {
   overflow: hidden;
   max-height: 150px; /* Limit the height of the description */
   text-overflow: ellipsis;
-  color: white;
 }
 
 .expanded-content .description.collapsed {
@@ -131,12 +126,11 @@
 .add-to-cart-container {
   display: flex;
   align-items: center;
-  background-color: #222222;
+  background-color: white;
 }
 
 .add-to-cart-container .price {
   font-size: 1.5rem;
-  color: white;
   font-weight: bold;
   margin-right: 20px; /* Adjust spacing as needed */
   align-self: center;
@@ -178,15 +172,14 @@
     display: flex;
     align-items: center;
   }
-
 }
 
 .header-title-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 10%; /* Adjust height as needed */
-  background-image: radial-gradient(salmon, rgb(162, 49, 177));
+  height: 20%; /* Adjust height as needed */
+  background-image: radial-gradient(salmon, #a231b1);
   background-size: cover;
 }
 
@@ -196,15 +189,37 @@
   font-size: 6rem;
 }
 
-.header-tab-row {
+
+.tab-bar {
   display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+  padding: 0;
 }
 
-.header-tab {
+.tab {
+
+  padding: 10px 20px;
+  text-align: center; /* Center text within each tab */
+  cursor: pointer;
+  border: #a231b1;
+  border-width: 5px;
+  border-radius: .33rem;
+  transition: border 0.3s;
+  width: 30%;
   color: #FFB6A0;
-  padding-left: 20px;
-  background-color: #222222;
-  border-style: hidden;
+  
+  background-color: salmon;
+  font-weight: bold;
+  font-size: 20px;
+  
 }
 
+.tab:hover {
+  transform: scale(1.1); /* Scale up the tab on hover */
+  background: radial-gradient(circle, rgba(255,182,160,1) 0%, rgba(255,105,97,1) 100%); /* Background gradient on hover */
+  border-color: #a231b1;
+  border-width: 1px;
+  border-style: groove;
+}
 

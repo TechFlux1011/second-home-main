@@ -8,9 +8,7 @@ const Navbar = ({ toggleCart, showCart, cart, removeFromCart, getTotalPrice }) =
     <nav className="navbar">
       <div className="navbar-logo">
         <img src={logo} alt="Second Home Logo" className="navbar-logo-img" />
-      </div>
-      <div className="navbar-title">
-        <h1>Second Home</h1>
+        <div className="navbar-title">Second Home</div>
       </div>
       <div className="cart-container">
         <button className="cart-button" onClick={toggleCart}>
