@@ -81,7 +81,8 @@ const Home = () => {
         <button className="tab">New Arrivals</button>
         <button className="tab">Best Sellers</button>
       </div>
-      <h2>Featured Products</h2>
+      <div className='tab-title-container'><h2 className='tab-title'>Featured Products</h2></div>
+      
       <div className="product-grid">
         {products.map((product) => (
           <div

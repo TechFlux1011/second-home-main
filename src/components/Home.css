@@ -203,7 +203,7 @@
   text-align: center; /* Center text within each tab */
   cursor: pointer;
   border: #a231b1;
-  border-width: 5px;
+  border-width: 1px;
   border-radius: .33rem;
   transition: border 0.3s;
   width: 30%;
@@ -217,9 +217,26 @@
 
 .tab:hover {
   transform: scale(1.1); /* Scale up the tab on hover */
-  background: radial-gradient(circle, rgba(255,182,160,1) 0%, rgba(255,105,97,1) 100%); /* Background gradient on hover */
-  border-color: #a231b1;
-  border-width: 1px;
-  border-style: groove;
+  /* background: radial-gradient(circle, rgba(255,182,160,1) 0%, rgba(255,105,97,1) 100%); Background gradient on hover */
+  background: radial-gradient(circle, rgba(255,182,160,1) 0%, rgba(255,105,97,1) 100%);
+  color:  white;
+  text-indent: -1;
+  /* border-width: 1px; */
+  /* border-style: groove; */
 }
 
+.tab:active {
+  color: #a231b1;
+  background: radial-gradient(circle, rgba(255,182,160,1) 0%, rgba(255,105,97,1) 100%);
+}
+
+.tab-title h2{
+  padding-top: 20px;
+  font-size: 25px;
+}
+
+.tab-title-container {
+  color: #FFB6A0;
+  text-align: center;
+  font-size: larger;
+}
