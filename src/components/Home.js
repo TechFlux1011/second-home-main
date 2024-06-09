@@ -111,7 +111,7 @@ const Home = () => {
                   className="read-more-button"
                   onClick={() => setDescriptionExpanded(true)}
                 >
-                  Read More
+                  Read More...
                 </button>
               )}
             </div>

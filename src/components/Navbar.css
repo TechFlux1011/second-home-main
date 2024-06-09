@@ -2,11 +2,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px 10px;
+  padding: 10px 20px;
   background-color: #333;
   color: #fff;
   position: fixed;
-  width: 95.5%;
+  width: 100%;
+  box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
   top: 0;
   z-index: 1000;
 }
@@ -19,16 +20,18 @@
 .navbar-logo-img {
   height: 40px;
   margin-right: 10px;
-  border-radius: 10%;
+  border-radius: 5px;
 }
 
 .navbar-title {
   font-size: 1.5rem;
-  font-weight: bolder;
   color: #FFB6A0; /* Pastel salmon color */
+  font-weight: bolder;
 }
 
 .cart-container {
+  display: flex;
+  align-items: center;
   position: relative;
 }
 
@@ -55,11 +58,14 @@
   position: absolute;
   top: 40px;
   right: 0;
-  background-color: white;
-  border: 1px solid #ccc;
+  background-color: #333;
+  border: 1px solid #696969;
   padding: 10px;
-  width: 300px;
+  margin-top: 10px;
+  width: 25rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  border-radius: .35rem;
 }
 
 .cart-dropdown ul {
@@ -72,7 +78,7 @@
   display: flex;
   align-items: center;
   padding: 10px 0;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #777;
 }
 
 .cart-item:last-child {
@@ -94,10 +100,12 @@
 .cart-item-details span:first-child {
   display: block;
   font-weight: bold;
+  color: #FFB6A0;
+  text-shadow: #333;
 }
 
 .cart-item-details span:last-child {
-  color: #777;
+  color: #ccc;
 }
 
 .remove-button {
@@ -115,7 +123,8 @@
   align-items: center;
   margin-top: 10px;
   padding-top: 10px;
-  border-top: 1px solid #ccc;
+  font-weight: bolder;
+  border-top: 1px solid white;
 }
 
 .checkout-button {
