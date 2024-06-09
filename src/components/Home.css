@@ -32,6 +32,12 @@
   transition: transform 0.3s ease; /* Add transition for smooth transformation */
 }
 
+.product-card:hover {
+  transform: scale(110%);
+  transition: 0.3s ease-out;
+
+}
+
 .product-card::before {
   content: "";
   display: block;
@@ -69,6 +75,12 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease; /* Add transition for smooth fade-in */
+}
+
+.expanded-overlay.show {
+  opacity: 1;
 }
 
 .expanded-content {
@@ -80,6 +92,12 @@
   overflow: auto;
   display: grid;
   gap: 20px;
+  transform: scale(0.5);
+  transition: transform 0.3s ease; /* Add transition for smooth scaling */
+}
+
+.expanded-content.show {
+  transform: scale(1);
 }
 
 .expanded-content .image-container {
@@ -87,6 +105,7 @@
   max-width: 100%; /* Fixed width for the image container */
   padding-top: 100%; /* Aspect ratio 3:4 */
   position: relative;
+  padding-top: 100%; /* Aspect ratio 1:1 for square */
 }
 
 .expanded-content .image-container img {
@@ -97,6 +116,8 @@
   height: 100%;
   object-fit: cover;
   border-radius: 10px;
+  border-style: solid;
+  border-color: #333;
 }
 
 .expanded-content h2 {
@@ -139,7 +160,7 @@
   font-weight: bold;
   margin-right: 20px; /* Adjust spacing as needed */
   align-self: center;
-  color: #ccc;
+  color: white;
 }
 
 .add-to-cart-container .add-to-cart {
@@ -195,6 +216,10 @@
   font-size: 6rem;
 }
 
+.header-tab {
+  color: #FFB6A0;
+  padding-left: 20px;
+}
 
 .tab-bar {
   display: flex;
@@ -204,43 +229,62 @@
 }
 
 .tab {
-
+  border-style: none;
   padding: 10px 20px;
   text-align: center; /* Center text within each tab */
   cursor: pointer;
-  border: #a231b1;
-  border-width: 1px;
-  border-radius: .33rem;
-  transition: border 0.3s;
-  width: 30%;
   color: #FFB6A0;
-  
   background-color: salmon;
-  font-weight: bold;
-  font-size: 20px;
   
+  font-weight: bold;
+  font-size: 1rem;
+  
+  width: 30%;
+  border-radius: .33rem;
 }
+
 
 .tab:hover {
   transform: scale(1.1); /* Scale up the tab on hover */
-  /* background: radial-gradient(circle, rgba(255,182,160,1) 0%, rgba(255,105,97,1) 100%); Background gradient on hover */
-  background: radial-gradient(circle, rgba(255,182,160,1) 0%, rgba(255,105,97,1) 100%);
+  background: radial-gradient(circle, rgba(255,182,160,1) 0%, rgba(255,105,97,1) 100%); /* Background gradient on hover */
+  transition: 0.3s ease; 
   color:  white;
-  text-indent: -1;
-  /* border-width: 1px; */
-  /* border-style: groove; */
 }
 
-.tab:active {
-  color: #a231b1;
-  background: radial-gradient(circle, rgba(255,182,160,1) 0%, rgba(255,105,97,1) 100%);
+.sort-filter-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  margin: 20px;
 }
 
-.sort-dropdown, .filter-dropdown {
+.sort-dropdown,
+.filter-dropdown {
+  /* text-align: center; */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* width: auto; */
+  background-image: none;
+  background-color: #fff;
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
-  background-color: #fff;
   color: #333;
   cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: right center; /* Ensure no background image is displayed */
 }
+
+
+.tab-title h2{
+  padding-top: 20px;
+  font-size: 25px;
+}
+
+.tab-title-container {
+  color: #ccc;
+  text-align: center;
+  font-size: larger;
+}
+

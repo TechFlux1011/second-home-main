@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import './Navbar.css'; // Import CSS file for styling
 import { CartContext } from '../CartContext'; // Import CartContext
 import logo from '../logo.jpg'; // Import the logo image
+import icon from '../shopping-cart.png'
 
 const Navbar = ({ toggleCart, showCart, cart, removeFromCart, getTotalPrice }) => {
   return (
@@ -12,7 +13,7 @@ const Navbar = ({ toggleCart, showCart, cart, removeFromCart, getTotalPrice }) =
       </div>
       <div className="cart-container">
         <button className="cart-button" onClick={toggleCart}>
-          View Cart
+          <img src={icon} alt='Cart' className='cart-icon' />
           <span className="cart-count">{cart.length}</span> {/* Use cart length */}
         </button>
         {showCart && (
@@ -23,7 +24,7 @@ const Navbar = ({ toggleCart, showCart, cart, removeFromCart, getTotalPrice }) =
                   <img src={item.image} alt={item.title} className="cart-item-image" />
                   <div className="cart-item-details">
                     <span>{item.title}</span>
-                    <span>${item.price}</span>
+                    <span>${item.price.toFixed(2)}</span>
                   </div>
                   <button className="remove-button" onClick={() => removeFromCart(index)}>Remove</button>
                 </li>

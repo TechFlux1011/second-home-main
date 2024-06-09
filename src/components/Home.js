@@ -10,6 +10,9 @@ const Home = () => {
   const { cart, addToCart, removeFromCart } = useContext(CartContext); // Use cart from CartContext
   const expandedContentRef = useRef(null);
   const [descriptionExpanded, setDescriptionExpanded] = useState(false); // Track description expansion
+  const [showReadMore, setShowReadMore] = useState(false); // Track if "Read More" button should be shown
+  const [sortOption, setSortOption] = useState('default');
+  const [filterOption, setFilterOption] = useState('all');
 
   useEffect(() => {
     fetch('https://fakestoreapi.com/products')
@@ -17,21 +20,52 @@ const Home = () => {
       .then((data) => setProducts(data));
   }, []);
 
+  useEffect(() => {
+    if (expandedProduct) {
+      const descriptionElement = document.querySelector('.expanded-content .description');
+      if (descriptionElement.scrollHeight > descriptionElement.clientHeight) {
+        setShowReadMore(true);
+      } else {
+        setShowReadMore(false);
+      }
+    }
+  }, [expandedProduct]);
+
   // Function to handle expanding a product
   const handleExpand = (product) => {
     setExpandedProduct(product);
     setDescriptionExpanded(false); // Reset description expansion when a new product is expanded
+    setTimeout(() => {
+      const overlayElement = document.querySelector('.expanded-overlay');
+      const contentElement = document.querySelector('.expanded-content');
+      if (overlayElement) {
+        overlayElement.classList.add('show');
+      }
+      if (contentElement) {
+        contentElement.classList.add('show');
+      }
+    }, 0);
   };
 
   // Function to handle closing the expanded product
   const handleClose = () => {
-    setExpandedProduct(null);
+    const overlayElement = document.querySelector('.expanded-overlay');
+    const contentElement = document.querySelector('.expanded-content');
+    if (overlayElement) {
+      overlayElement.classList.remove('show');
+    }
+    if (contentElement) {
+      contentElement.classList.remove('show');
+    }
+    setTimeout(() => {
+      setExpandedProduct(null);
+    }, 300); // Match the transition duration
   };
 
   // Function to handle adding item to cart
   const handleAddToCart = (product) => {
     addToCart(product);
-    setExpandedProduct(null); // Close the expanded screen
+    handleClose();
     setShowCart(true); // Show the cart dropdown
   };
 
@@ -64,6 +98,32 @@ const Home = () => {
     };
   }, [expandedProduct]);
 
+  // Sort products based on selected option
+  const sortProducts = (products) => {
+    switch (sortOption) {
+      case 'price-asc':
+        return products.sort((a, b) => a.price - b.price);
+      case 'price-desc':
+        return products.sort((a, b) => b.price - a.price);
+      case 'title-asc':
+        return products.sort((a, b) => a.title.localeCompare(b.title));
+      case 'title-desc':
+        return products.sort((a, b) => b.title.localeCompare(a.title));
+      default:
+        return products;
+    }
+  };
+
+  // Filter products based on selected category
+  const filterProducts = (products) => {
+    if (filterOption === 'all') {
+      return products;
+    }
+    return products.filter((product) => product.category === filterOption);
+  };
+
+  const sortedAndFilteredProducts = sortProducts(filterProducts(products));
+
   return (
     <div className="container">
       <Navbar 
@@ -82,16 +142,33 @@ const Home = () => {
         <button className="tab">Best Sellers</button>
       </div>
       <div className='tab-title-container'><h2 className='tab-title'>Featured Products</h2></div>
-      
+
+      <div className="sort-filter-container">
+        <select className="sort-dropdown" value={sortOption} onChange={(e) => setSortOption(e.target.value)}>
+          <option value="default">Sort</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="title-asc">Title: A to Z</option>
+          <option value="title-desc">Title: Z to A</option>
+        </select>
+        <select className="filter-dropdown" value={filterOption} onChange={(e) => setFilterOption(e.target.value)}>
+          <option value="all">Filter</option>
+          <option value="electronics">Electronics</option>
+          <option value="jewelery">Jewelery</option>
+          <option value="men's clothing">Men's Clothing</option>
+          <option value="women's clothing">Women's Clothing</option>
+        </select>
+      </div>
+
       <div className="product-grid">
-        {products.map((product) => (
+        {sortedAndFilteredProducts.map((product) => (
           <div
             key={product.id}
             className="product-card"
             onClick={() => handleExpand(product)}
           >
             <img src={product.image} alt={product.title} />
-            <div className="price">${product.price}</div>
+            <div className="price">${product.price.toFixed(2)}</div>
           </div>
         ))}
       </div>
@@ -106,7 +183,7 @@ const Home = () => {
               <div className={`description ${descriptionExpanded ? 'collapsed' : ''}`}>
                 {expandedProduct.description}
               </div>
-              {!descriptionExpanded && (
+              {!descriptionExpanded && showReadMore && (
                 <button
                   className="read-more-button"
                   onClick={() => setDescriptionExpanded(true)}
@@ -116,7 +193,7 @@ const Home = () => {
               )}
             </div>
             <div className="add-to-cart-container">
-              <div className="price">${expandedProduct.price}</div>
+              <div className="price">${expandedProduct.price.toFixed(2)}</div>
               <button className="add-to-cart" onClick={() => handleAddToCart(expandedProduct)}>Add to Cart</button>
             </div>
           </div>

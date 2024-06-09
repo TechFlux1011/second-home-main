@@ -10,6 +10,7 @@
   box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
   top: 0;
   z-index: 1000;
+  box-shadow: #333 5px;
 }
 
 .navbar-logo {
@@ -35,6 +36,11 @@
   position: relative;
 }
 
+.cart-icon {
+  height: 20px;
+
+}
+
 .cart-button {
   padding: 10px 15px;
   background-color: #007bff;
@@ -47,11 +53,19 @@
 
 .cart-count {
   background-color: red;
+  box-shadow: #696969;
   color: white;
-  border-radius: 50%;
+  border-radius: 3rem;
   padding: 5px 10px;
-  margin-left: 10px;
   font-size: 14px;
+  position: absolute;
+  top: -10px; /* Adjust position to float above the cart button */
+  right: -10px; /* Adjust position to float above the cart button */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5px; /* Minimum width to keep it circular */
+  height: 15px; /* Height to keep it circular */
 }
 
 .cart-dropdown {
