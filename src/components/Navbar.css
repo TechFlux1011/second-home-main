@@ -46,17 +46,19 @@
   margin-right: 10px;
   color: #007bff;
   text-decoration: none;
-  background: none;
+  background: white;
   border: none;
   cursor: pointer;
   font-size: 1rem;
-  padding: 0;
+  padding: 10px;
+  border-radius: .33rem;
 }
 
 .auth-button:hover,
 .list-button:hover,
 .logout-button:hover {
-  color: #0056b3;
+  color: white;
+  background-color: #007bff;
 }
 
 .profile-button {
@@ -77,6 +79,11 @@
 .cart-icon {
   height: 24px;
 
+}
+
+.cart-icon:hover {
+  transform: scale(110%);
+  transition: 0.3s ease;
 }
 
 .cart-button {

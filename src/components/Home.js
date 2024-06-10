@@ -3,6 +3,8 @@ import './Home.css'; // Import CSS file for styling
 import { CartContext } from '../CartContext'; // Import CartContext
 import Navbar from './Navbar'; // Import Navbar
 import { ProductContext } from '../ProductContext'; // Import ProductContext
+import ProductDetail from './ProductDetail';
+import ListProductButton from './ListProductButton'; // Import the FAB component
 
 const Home = () => {
   const [expandedProduct, setExpandedProduct] = useState(null); // Track the currently expanded product
@@ -209,8 +211,10 @@ const Home = () => {
           </div>
         </div>
       )}
+      <ListProductButton /> {/* Add the FAB component here */}
     </div>
   );
 };
 
 export default Home;
+

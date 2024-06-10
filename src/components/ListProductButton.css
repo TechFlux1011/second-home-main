@@ -1,0 +1,25 @@
+.fab {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: salmon;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
+  }
+  
+  .fab:hover {
+    background-color: #FFB6A0;
+    transform: scale(110%);
+    transition: 0.3s ease;
+  }
+  
