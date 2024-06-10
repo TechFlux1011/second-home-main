@@ -203,6 +203,7 @@
 
 .header-title-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 20%; /* Adjust height as needed */
@@ -214,6 +215,13 @@
   color: #FFB6A0; /* Pastel salmon color */
   text-align: center;
   font-size: 6rem;
+}
+
+.header-subtitle {
+  font-size: 1.2em;
+  color: salmon;
+  margin-top: -30px;
+  padding-bottom: 20px;
 }
 
 .header-tab {
