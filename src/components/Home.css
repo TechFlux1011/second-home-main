@@ -258,6 +258,22 @@
   margin: 20px;
 }
 
+.search-sort-filter-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  margin: 20px;
+}
+
+.search-input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  color: #333;
+  width: 200px;
+}
+
 .sort-dropdown,
 .filter-dropdown {
   /* text-align: center; */

@@ -1,20 +1,35 @@
 import React, { useContext } from 'react';
-import './Navbar.css'; // Import CSS file for styling
-import { CartContext } from '../CartContext'; // Import CartContext
-import logo from '../logo.jpg'; // Import the logo image
-import icon from '../shopping-cart.png'
+import { useNavigate } from 'react-router-dom';
+import './Navbar.css';
+import { AuthContext } from '../AuthContext';
+import logo from '../logo.jpg';
+import icon from '../shopping-cart.png';
 
-const Navbar = ({ toggleCart, showCart, cart, removeFromCart, getTotalPrice }) => {
+const Navbar = ({ cart, toggleCart, showCart, removeFromCart, getTotalPrice }) => {
+  const { user, logout } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   return (
     <nav className="navbar">
-      <div className="navbar-logo">
+      <div className="navbar-logo" onClick={() => navigate('/')}>
         <img src={logo} alt="Second Home Logo" className="navbar-logo-img" />
         <div className="navbar-title">Second Home</div>
       </div>
       <div className="cart-container">
+        {!user ? (
+          <button className="auth-button" onClick={() => navigate('/auth')}>Sign Up / Login</button>
+        ) : (
+          <>
+            <button className="profile-button" onClick={() => navigate('/profile')}>
+              <img src={user.profilePhotoUrl || 'profile.jpg'} alt="Profile" className="profile-photo" />
+            </button>
+            <button className="list-button" onClick={() => navigate('/list-product')}>List Product</button>
+            <button className="logout-button" onClick={logout}>Logout</button>
+          </>
+        )}
         <button className="cart-button" onClick={toggleCart}>
           <img src={icon} alt='Cart' className='cart-icon' />
-          <span className="cart-count">{cart.length}</span> {/* Use cart length */}
+          <span className="cart-count">{cart.length}</span>
         </button>
         {showCart && (
           <div className="cart-dropdown">

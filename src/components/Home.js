@@ -2,23 +2,19 @@ import React, { useState, useEffect, useContext, useRef } from 'react';
 import './Home.css'; // Import CSS file for styling
 import { CartContext } from '../CartContext'; // Import CartContext
 import Navbar from './Navbar'; // Import Navbar
+import { ProductContext } from '../ProductContext'; // Import ProductContext
 
 const Home = () => {
-  const [products, setProducts] = useState([]);
   const [expandedProduct, setExpandedProduct] = useState(null); // Track the currently expanded product
   const [showCart, setShowCart] = useState(false); // Track cart dropdown visibility
   const { cart, addToCart, removeFromCart } = useContext(CartContext); // Use cart from CartContext
+  const { products } = useContext(ProductContext); // Use products from ProductContext
   const expandedContentRef = useRef(null);
   const [descriptionExpanded, setDescriptionExpanded] = useState(false); // Track description expansion
   const [showReadMore, setShowReadMore] = useState(false); // Track if "Read More" button should be shown
   const [sortOption, setSortOption] = useState('default');
   const [filterOption, setFilterOption] = useState('all');
-
-  useEffect(() => {
-    fetch('https://fakestoreapi.com/products')
-      .then((response) => response.json())
-      .then((data) => setProducts(data));
-  }, []);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     if (expandedProduct) {
@@ -102,13 +98,13 @@ const Home = () => {
   const sortProducts = (products) => {
     switch (sortOption) {
       case 'price-asc':
-        return products.sort((a, b) => a.price - b.price);
+        return [...products].sort((a, b) => a.price - b.price);
       case 'price-desc':
-        return products.sort((a, b) => b.price - a.price);
+        return [...products].sort((a, b) => b.price - a.price);
       case 'title-asc':
-        return products.sort((a, b) => a.title.localeCompare(b.title));
+        return [...products].sort((a, b) => a.title.localeCompare(b.title));
       case 'title-desc':
-        return products.sort((a, b) => b.title.localeCompare(a.title));
+        return [...products].sort((a, b) => b.title.localeCompare(a.title));
       default:
         return products;
     }
@@ -122,7 +118,14 @@ const Home = () => {
     return products.filter((product) => product.category === filterOption);
   };
 
-  const sortedAndFilteredProducts = sortProducts(filterProducts(products));
+  // Filter products based on search query
+  const searchProducts = (products) => {
+    return products.filter((product) => 
+      product.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  };
+
+  const sortedAndFilteredProducts = searchProducts(sortProducts(filterProducts(products)));
 
   return (
     <div className="container">
@@ -143,16 +146,23 @@ const Home = () => {
       </div>
       <div className='tab-title-container'><h2 className='tab-title'>Featured Products</h2></div>
 
-      <div className="sort-filter-container">
+      <div className="search-sort-filter-container">
+        <input
+          type="text"
+          className="search-input"
+          placeholder="Search products..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
         <select className="sort-dropdown" value={sortOption} onChange={(e) => setSortOption(e.target.value)}>
-          <option value="default">Sort</option>
+          <option value="default">Sort by</option>
           <option value="price-asc">Price: Low to High</option>
           <option value="price-desc">Price: High to Low</option>
           <option value="title-asc">Title: A to Z</option>
           <option value="title-desc">Title: Z to A</option>
         </select>
         <select className="filter-dropdown" value={filterOption} onChange={(e) => setFilterOption(e.target.value)}>
-          <option value="all">Filter</option>
+          <option value="all">Filter by category</option>
           <option value="electronics">Electronics</option>
           <option value="jewelery">Jewelery</option>
           <option value="men's clothing">Men's Clothing</option>

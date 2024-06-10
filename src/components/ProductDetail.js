@@ -1,29 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React from 'react';
+import './ProductDetail.css';
 
-const ProductDetail = () => {
-  const { id } = useParams();
-  const [product, setProduct] = useState(null);
-
-  useEffect(() => {
-    fetch(`https://fakestoreapi.com/products/${id}`)
-      .then((response) => response.json())
-      .then((data) => setProduct(data));
-  }, [id]);
-
-  if (!product) {
-    return <div>Loading...</div>;
-  }
+const ProductDetail = ({ product, onClose }) => {
+  const { title, description, price, image } = product;
 
   return (
-    <div>
-      <h1>{product.title}</h1>
-      <img src={product.image} alt={product.title} />
-      <p>${product.price}</p>
-      <p>{product.description}</p>
+    <div className="expanded-overlay" onClick={onClose}>
+      <div className="expanded-content" onClick={(e) => e.stopPropagation()}>
+        <div className="image-container">
+          <img src={image} alt={title} className="product-image" />
+        </div>
+        <div className="details-container">
+          <h2>{title}</h2>
+          <p className="description">{description}</p>
+          <div className="price">${price.toFixed(2)}</div>
+          <button className="add-to-cart">Add to Cart</button>
+        </div>
+      </div>
     </div>
   );
 };
 
 export default ProductDetail;
-
