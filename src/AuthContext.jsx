@@ -22,13 +22,15 @@ const AuthProvider = ({ children }) => {
   };
 
   const signup = (email, password, name, address, phone, profilePhotoUrl) => {
+    // Set default profile photo URL if not provided
+    const defaultProfilePhotoUrl = 'profile.jpg'; // Ensure this file is in the public directory
     const newUser = {
       id: Date.now(),
       email,
       name,
       address,
       phone,
-      profilePhotoUrl: profilePhotoUrl || 'profile.jpg', // Ensure this file is in the public directory
+      profilePhotoUrl: profilePhotoUrl || defaultProfilePhotoUrl,
     };
     localStorage.setItem('user', JSON.stringify(newUser));
     setUser(newUser);

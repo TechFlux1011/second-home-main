@@ -7,7 +7,7 @@
   color: #fff;
   position: fixed;
   width: 100%;
-  box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+  box-sizing: border-box;
   top: 0;
   z-index: 1000;
   box-shadow: #333 5px;
@@ -30,7 +30,7 @@
 
 .navbar-title {
   font-size: 1.5rem;
-  color: #FFB6A0; /* Pastel salmon color */
+  color: #FFB6A0;
   font-weight: bolder;
 }
 
@@ -38,6 +38,7 @@
   display: flex;
   align-items: center;
   position: relative;
+  height: 40px;
 }
 
 .auth-button,
@@ -62,23 +63,22 @@
 }
 
 .profile-button {
-  margin-right: 10px;
   background: none;
   border: none;
-  cursor: pointer;
-  padding: 0;
-}
-
-.profile-photo {
-  width: 40px;
-  height: 40px;
   border-radius: 50%;
   object-fit: cover;
 }
 
+.navbar .profile-photo {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  padding: 0;
+  border-radius: 50%;
+}
+
 .cart-icon {
   height: 24px;
-
 }
 
 .cart-icon:hover {
@@ -96,22 +96,14 @@
 
 .cart-count {
   position: absolute;
-  top: -10px;
-  right: -10px;
+  top: -7px;
+  right: -5px;
   background-color: red;
-  box-shadow: #696969;
   color: white;
   border-radius: 3rem;
-  padding: 5px 10px;
-  font-size: 14px;
-  position: absolute;
-  top: -10px; /* Adjust position to float above the cart button */
-  right: -10px; /* Adjust position to float above the cart button */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 5px; /* Minimum width to keep it circular */
-  height: 15px; /* Height to keep it circular */
+  padding: 2.5px 5px;
+  font-size: 12px;
+  text-align: justify;
 }
 
 .cart-dropdown {
@@ -124,7 +116,6 @@
   margin-top: 10px;
   width: 25rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  box-sizing: border-box;
   border-radius: .35rem;
 }
 
@@ -157,7 +148,6 @@
   display: block;
   font-weight: bold;
   color: #FFB6A0;
-  text-shadow: #333;
 }
 
 .cart-item-details span:last-child {

@@ -7,6 +7,7 @@ import Profile from './components/Profile';
 import Navbar from './components/Navbar';
 import AuthProvider from './AuthContext';
 import ProductProvider from './ProductContext';
+import CartProvider from './CartContext';
 
 const App = () => {
   const [cart, setCart] = useState([]);
@@ -32,21 +33,23 @@ const App = () => {
   return (
     <AuthProvider>
       <ProductProvider>
-        <Router>
-          <Navbar 
-            cart={cart} 
-            toggleCart={toggleCart} 
-            showCart={showCart}
-            removeFromCart={removeFromCart}
-            getTotalPrice={getTotalPrice}
-          />
-          <Routes>
-            <Route path="/auth" element={<Auth />} />
-            <Route path="/list-product" element={<ListProduct addToCart={addToCart} />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/" element={<Home />} />
-          </Routes>
-        </Router>
+        <CartProvider>
+          <Router basename="/second-home-main">
+            <Navbar 
+              cart={cart} 
+              toggleCart={toggleCart} 
+              showCart={showCart}
+              removeFromCart={removeFromCart}
+              getTotalPrice={getTotalPrice}
+            />
+            <Routes>
+              <Route path="/auth" element={<Auth />} />
+              <Route path="/list-product" element={<ListProduct />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/" element={<Home />} />
+            </Routes>
+          </Router>
+        </CartProvider>
       </ProductProvider>
     </AuthProvider>
   );

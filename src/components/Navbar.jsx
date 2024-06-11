@@ -4,11 +4,11 @@ import './Navbar.css';
 import { AuthContext } from '../AuthContext';
 import logo from '../logo.jpg';
 import icon from '../shopping-cart.png';
+import profile from '../profile.jpg'
 
-const Navbar = ({ cart, toggleCart, showCart, removeFromCart, getTotalPrice }) => {
+const Navbar = ({ toggleCart, showCart, cart, removeFromCart, getTotalPrice }) => {
   const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
-
   return (
     <nav className="navbar">
       <div className="navbar-logo" onClick={() => navigate('/')}>
@@ -21,8 +21,9 @@ const Navbar = ({ cart, toggleCart, showCart, removeFromCart, getTotalPrice }) =
         ) : (
           <>
             <button className="profile-button" onClick={() => navigate('/profile')}>
-              <img src={user.profilePhotoUrl || 'profile.jpg'} alt="Profile" className="profile-photo" />
+              <img src={user.profilePhotoUrl || profile} alt="Profile" className="profile-photo" />
             </button>
+            <button className="list-button" onClick={() => navigate('/list-product')}>List Product</button>
             <button className="logout-button" onClick={logout}>Logout</button>
           </>
         )}
