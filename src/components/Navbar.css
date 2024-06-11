@@ -41,27 +41,6 @@
   height: 40px;
 }
 
-.auth-button,
-.list-button,
-.logout-button {
-  margin-right: 10px;
-  color: #007bff;
-  text-decoration: none;
-  background: white;
-  border: none;
-  cursor: pointer;
-  font-size: 1rem;
-  padding: 10px;
-  border-radius: .33rem;
-}
-
-.auth-button:hover,
-.list-button:hover,
-.logout-button:hover {
-  color: white;
-  background-color: #007bff;
-}
-
 .profile-button {
   background: none;
   border: none;
@@ -106,7 +85,7 @@
   text-align: justify;
 }
 
-.cart-dropdown {
+.cart-dropdown, .profile-dropdown {
   position: absolute;
   top: 40px;
   right: 0;
@@ -114,7 +93,8 @@
   border: 1px solid #696969;
   padding: 10px;
   margin-top: 10px;
-  width: 25rem;
+  min-width: 23rem;
+  max-width: 430px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: .35rem;
 }

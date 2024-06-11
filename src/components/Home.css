@@ -207,7 +207,7 @@
   justify-content: center;
   align-items: center;
   height: 20%; /* Adjust height as needed */
-  background-image: radial-gradient(salmon, #a231b1);
+  background: #222;
   background-size: cover;
 }
 
@@ -215,6 +215,7 @@
   color: #FFB6A0; /* Pastel salmon color */
   text-align: center;
   font-size: 6rem;
+  text-shadow: 0 0 10px ;
 }
 
 .header-subtitle {

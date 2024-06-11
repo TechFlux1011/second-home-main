@@ -1,55 +1,27 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../AuthContext';
 import './Profile.css';
 
 const Profile = () => {
-  const { user, logout, updateUser } = useContext(AuthContext);
-  const [profileData, setProfileData] = useState({
-    name: user.name,
-    email: user.email,
-    profileImage: user.profileImage || process.env.PUBLIC_URL + '/profile.jpg',
-  });
-  const [message, setMessage] = useState('');
+  const { user, logout } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const containerRef = useRef(null);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setProfileData({ ...profileData, [name]: value });
-  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    updateUser(profileData);
-    setMessage('Profile updated successfully!');
-  };
+  const profileImage = user.profileImage || process.env.PUBLIC_URL + '/profile.jpg';
 
   return (
-    <div className="profile-overlay">
-      <div className="profile-container profile-page">
-        <div className="profile-header">
-          <img src={profileData.profileImage} alt="Profile" className="profile-photo" />
-          <div className="profile-info">
-            <h2>{profileData.name}</h2>
-            <p>{profileData.email}</p>
-          </div>
-        </div>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="name"
-            value={profileData.name}
-            onChange={handleChange}
-            placeholder="Name"
-          />
-          <input
-            type="email"
-            name="email"
-            value={profileData.email}
-            onChange={handleChange}
-            placeholder="Email"
-          />
-          <button type="submit">Edit Profile</button>
-          {message && <div className="message">{message}</div>}
-        </form>
+    <div className="profile-container" ref={containerRef}>
+      <img src={profileImage} alt="Profile" className="profile-photo" />
+      <div className="profile-header">
+        <h2>{user.name}</h2>
+      </div>
+      <div className="profile-info">
+        <p>Email: {user.email}</p>
+      </div>
+      <div className="profile-buttons">
+        <button onClick={() => navigate('/edit-profile')}>Edit Profile</button>
         <button onClick={logout}>Logout</button>
       </div>
     </div>

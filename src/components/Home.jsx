@@ -1,22 +1,30 @@
 import React, { useState, useEffect, useContext, useRef } from 'react';
-import './Home.css'; // Import CSS file for styling
-import { CartContext } from '../CartContext'; // Import CartContext
-import Navbar from './Navbar'; // Import Navbar
-import { ProductContext } from '../ProductContext'; // Import ProductContext
-import ProductDetail from './ProductDetail';
-import ListProductButton from './ListProductButton'; // Import the FAB component
+import './Home.css';
+import { CartContext } from '../CartContext';
+import Navbar from './Navbar';
+import { ProductContext } from '../ProductContext';
+import ListProductButton from './ListProductButton';
+import Profile from './Profile';
 
 const Home = () => {
-  const [expandedProduct, setExpandedProduct] = useState(null); // Track the currently expanded product
-  const [showCart, setShowCart] = useState(false); // Track cart dropdown visibility
-  const { cart, addToCart, removeFromCart } = useContext(CartContext); // Use cart from CartContext
-  const { products } = useContext(ProductContext); // Use products from ProductContext
+  const [expandedProduct, setExpandedProduct] = useState(null);
+  const [showCart, setShowCart] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const { cart, addToCart, removeFromCart } = useContext(CartContext);
+  const { products } = useContext(ProductContext);
   const expandedContentRef = useRef(null);
-  const [descriptionExpanded, setDescriptionExpanded] = useState(false); // Track description expansion
-  const [showReadMore, setShowReadMore] = useState(false); // Track if "Read More" button should be shown
+  const [descriptionExpanded, setDescriptionExpanded] = useState(false);
+  const [showReadMore, setShowReadMore] = useState(false);
   const [sortOption, setSortOption] = useState('default');
   const [filterOption, setFilterOption] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     if (expandedProduct) {
@@ -29,10 +37,9 @@ const Home = () => {
     }
   }, [expandedProduct]);
 
-  // Function to handle expanding a product
   const handleExpand = (product) => {
     setExpandedProduct(product);
-    setDescriptionExpanded(false); // Reset description expansion when a new product is expanded
+    setDescriptionExpanded(false);
     setTimeout(() => {
       const overlayElement = document.querySelector('.expanded-overlay');
       const contentElement = document.querySelector('.expanded-content');
@@ -45,7 +52,6 @@ const Home = () => {
     }, 0);
   };
 
-  // Function to handle closing the expanded product
   const handleClose = () => {
     const overlayElement = document.querySelector('.expanded-overlay');
     const contentElement = document.querySelector('.expanded-content');
@@ -57,27 +63,27 @@ const Home = () => {
     }
     setTimeout(() => {
       setExpandedProduct(null);
-    }, 300); // Match the transition duration
+    }, 300);
   };
 
-  // Function to handle adding item to cart
   const handleAddToCart = (product) => {
     addToCart(product);
     handleClose();
-    setShowCart(true); // Show the cart dropdown
+    setShowCart(true);
   };
 
-  // Function to toggle cart dropdown visibility
   const toggleCart = () => {
     setShowCart(!showCart);
   };
 
-  // Calculate the total price of items in the cart
+  const toggleProfile = () => {
+    setShowProfile(!showProfile);
+  };
+
   const getTotalPrice = () => {
     return cart.reduce((total, item) => total + item.price, 0).toFixed(2);
   };
 
-  // Event listener for clicks outside the expanded content
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (expandedContentRef.current && !expandedContentRef.current.contains(event.target)) {
@@ -96,7 +102,6 @@ const Home = () => {
     };
   }, [expandedProduct]);
 
-  // Sort products based on selected option
   const sortProducts = (products) => {
     switch (sortOption) {
       case 'price-asc':
@@ -112,7 +117,6 @@ const Home = () => {
     }
   };
 
-  // Filter products based on selected category
   const filterProducts = (products) => {
     if (filterOption === 'all') {
       return products;
@@ -120,7 +124,6 @@ const Home = () => {
     return products.filter((product) => product.category === filterOption);
   };
 
-  // Filter products based on search query
   const searchProducts = (products) => {
     return products.filter((product) => 
       product.title.toLowerCase().includes(searchQuery.toLowerCase())
@@ -137,7 +140,9 @@ const Home = () => {
         cart={cart}
         removeFromCart={removeFromCart}
         getTotalPrice={getTotalPrice}
-      /> {/* Include Navbar */}
+        toggleProfile={toggleProfile}
+        showProfile={showProfile}
+      />
       <div className="header-title-container">
         <h1 className="header-title">Welcome to Second Home</h1>
         <h2 className='header-subtitle'>The dating app for clothes ❤️</h2>
@@ -212,7 +217,14 @@ const Home = () => {
           </div>
         </div>
       )}
-      <ListProductButton /> {/* Add the FAB component here */}
+      <ListProductButton />
+      {isMobile && showProfile && (
+        <div className="expanded-overlay">
+          <div className="expanded-content" ref={expandedContentRef}>
+            <Profile />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
