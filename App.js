@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './components/Home';
-import Auth from './components/Auth';
-import ListProduct from './components/ListProduct';
-import Profile from './components/Profile';
-import Navbar from './components/Navbar';
+import Home from './src/components/Home';
+import Auth from './src/components/Auth';
+import ListProduct from './src/components/ListProduct';
+import Profile from './src/components/Profile';
+import Navbar from './src/components/Navbar';
 import AuthProvider from './AuthContext';
 import ProductProvider from './ProductContext';
 

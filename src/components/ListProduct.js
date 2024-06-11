@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import './ListProduct.css'; // Import CSS for styling
-import { ProductContext } from '../ProductContext';
+import { ProductContext } from '../../ProductContext';
 
 const ListProduct = () => {
   const { addProduct } = useContext(ProductContext);
