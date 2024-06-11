@@ -5,8 +5,8 @@ import Auth from './src/components/Auth';
 import ListProduct from './src/components/ListProduct';
 import Profile from './src/components/Profile';
 import Navbar from './src/components/Navbar';
-import AuthProvider from './AuthContext';
-import ProductProvider from './ProductContext';
+import AuthProvider from './src/AuthContext';
+import ProductProvider from './src/ProductContext';
 
 const App = () => {
   const [cart, setCart] = useState([]);

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext, useRef } from 'react';
 import './Home.css'; // Import CSS file for styling
 import { CartContext } from '../CartContext'; // Import CartContext
 import Navbar from './Navbar'; // Import Navbar
-import { ProductContext } from '../../ProductContext'; // Import ProductContext
+import { ProductContext } from '../ProductContext'; // Import ProductContext
 import ProductDetail from './ProductDetail';
 import ListProductButton from './ListProductButton'; // Import the FAB component
 
