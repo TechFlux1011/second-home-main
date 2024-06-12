@@ -21,7 +21,7 @@ const Profile = () => {
         <p>Email: {user.email}</p>
       </div>
       <div className="profile-buttons">
-        <button onClick={() => navigate('/edit-profile')}>Edit Profile</button>
+        <button onClick={() => navigate('/edit-profile')}>Edit</button>
         <button onClick={logout}>Logout</button>
       </div>
     </div>

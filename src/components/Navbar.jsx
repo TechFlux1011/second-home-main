@@ -51,8 +51,6 @@ const Navbar = ({ toggleCart, showCart, cart, removeFromCart, getTotalPrice }) =
             <button className="profile-button" onClick={handleProfileToggle}>
               <img src={user.profilePhotoUrl || profile} alt="Profile" className="profile-photo" />
             </button>
-            <button className="list-button" onClick={() => navigate('/list-product')}>List Product</button>
-            <button className="logout-button" onClick={logout}>Logout</button>
           </>
         )}
         <button className="cart-button" onClick={toggleCart}>
