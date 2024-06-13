@@ -40,14 +40,28 @@
   grid-row: 2 / 3;
 }
 
-.profile-buttons button {
-  background-color: #007bff;
+.profile-buttons .logout-button {
+  background-color: red;
   color: white;
   border: none;
   padding: 10px 15px;
   border-radius: .75rem;
   cursor: pointer;
   margin-bottom: 10px;
+}
+
+.profile-buttons .edit-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.edit-button img {
+  width: 20px;
+  height: 20px;
 }
 
 .profile-dropdown {

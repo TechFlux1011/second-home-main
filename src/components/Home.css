@@ -274,14 +274,14 @@
   margin: 20px;
 }
 
-.search-input {
+/* .search-input {
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
   background-color: #fff;
   color: #333;
-  width: 200px;
-}
+  width: 400px;
+} */
 
 .sort-dropdown,
 .filter-dropdown {

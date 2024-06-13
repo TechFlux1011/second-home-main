@@ -41,9 +41,9 @@ const App = () => {
   };
 
   return (
-    <AuthProvider>
-      <ProductProvider>
-        <Router>
+    <Router>
+      <AuthProvider>
+        <ProductProvider>
           <Navbar 
             cart={cart} 
             toggleCart={toggleCart} 
@@ -62,9 +62,9 @@ const App = () => {
               toggleEditProfile={toggleEditProfile}
             />} />
           </Routes>
-        </Router>
-      </ProductProvider>
-    </AuthProvider>
+        </ProductProvider>
+      </AuthProvider>
+    </Router>
   );
 };
 

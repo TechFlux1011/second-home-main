@@ -155,13 +155,13 @@ const Home = () => {
       <div className='tab-title-container'><h2 className='tab-title'>Featured Products</h2></div>
 
       <div className="search-sort-filter-container">
-        <input
+        {/* <input
           type="text"
           className="search-input"
           placeholder="Search products..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-        />
+        /> */}
         <select className="sort-dropdown" value={sortOption} onChange={(e) => setSortOption(e.target.value)}>
           <option value="default">Sort by</option>
           <option value="price-asc">Price: Low to High</option>
