@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import './Navbar.css';
 import { AuthContext } from '../AuthContext';
 import logo from '../logo.jpg';
-import icon from '../shopping-cart.png';
+import cartIcon from '../shopping-cart.png';
+import editIcon from '../components/assets/edit-icon.png'
 import profile from '../profile.jpg';
 
 const Navbar = ({ toggleCart, showCart, cart, removeFromCart, getTotalPrice }) => {
@@ -43,6 +44,9 @@ const Navbar = ({ toggleCart, showCart, cart, removeFromCart, getTotalPrice }) =
         <img src={logo} alt="Second Home Logo" className="navbar-logo-img" />
         <div className="navbar-title">Second Home</div>
       </div>
+      <div className="search-container">
+        <input type="text" className="search-input" placeholder="Search products..." />
+      </div>
       <div className="cart-container">
         {!user ? (
           <button className="auth-button" onClick={() => navigate('/auth')}>Sign Up / Login</button>
@@ -54,7 +58,7 @@ const Navbar = ({ toggleCart, showCart, cart, removeFromCart, getTotalPrice }) =
           </>
         )}
         <button className="cart-button" onClick={toggleCart}>
-          <img src={icon} alt="Cart" className="cart-icon" />
+          <img src={cartIcon} alt="Cart" className="cart-icon" />
           <span className="cart-count">{cart.length}</span>
         </button>
         {showCart && (
@@ -87,8 +91,13 @@ const Navbar = ({ toggleCart, showCart, cart, removeFromCart, getTotalPrice }) =
                 {/* Add other profile details here */}
               </div>
               <div className="profile-buttons">
-                <button onClick={() => navigate('/profile/edit')}>Edit Profile</button>
+
                 <button onClick={logout}>Logout</button>
+              </div>
+              <div className='edit-button'>
+                <button onClick={() => navigate('/profile/edit')}>
+                  <img src= {editIcon} alt="edit" />
+                </button>
               </div>
             </div>
           </div>
