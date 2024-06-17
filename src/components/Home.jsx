@@ -5,6 +5,7 @@ import Navbar from './Navbar';
 import { ProductContext } from '../ProductContext';
 import ListProductButton from './ListProductButton';
 import Profile from './Profile';
+import sort from './assets/sort.png'
 
 const Home = () => {
   const [expandedProduct, setExpandedProduct] = useState(null);
@@ -163,7 +164,8 @@ const Home = () => {
           onChange={(e) => setSearchQuery(e.target.value)}
         /> */}
         <select className="sort-dropdown" value={sortOption} onChange={(e) => setSortOption(e.target.value)}>
-          <option value="default">Sort by</option>
+          <img src={sort} alt="Sort by" />
+          <option value="default"> <img src={sort} alt="x" /> Sort by</option>
           <option value="price-asc">Price: Low to High</option>
           <option value="price-desc">Price: High to Low</option>
           <option value="title-asc">Title: A to Z</option>
