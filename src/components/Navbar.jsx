@@ -6,6 +6,7 @@ import logo from '../logo.jpg';
 import cartIcon from '../shopping-cart.png';
 import editIcon from '../components/assets/edit-icon.png'
 import profile from '../profile.jpg';
+// import './Home.jsx'
 
 const Navbar = ({ toggleCart, showCart, cart, removeFromCart, getTotalPrice }) => {
   const { user, logout } = useContext(AuthContext);
@@ -13,11 +14,13 @@ const Navbar = ({ toggleCart, showCart, cart, removeFromCart, getTotalPrice }) =
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const profileRef = useRef(null);
   const cartRef = useRef(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleProfileToggle = () => {
     setShowProfileDropdown((prev) => !prev);
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleClickOutside = (event) => {
     if (profileRef.current && !profileRef.current.contains(event.target)) {
       setShowProfileDropdown(false);
@@ -36,7 +39,8 @@ const Navbar = ({ toggleCart, showCart, cart, removeFromCart, getTotalPrice }) =
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [showProfileDropdown, showCart]);
+  }, [showProfileDropdown, showCart, handleClickOutside]);
+  
 
   return (
     <nav className="navbar">
@@ -45,7 +49,9 @@ const Navbar = ({ toggleCart, showCart, cart, removeFromCart, getTotalPrice }) =
         <div className="navbar-title">Second Home</div>
       </div>
       <div className="search-container">
-        <input type="text" className="search-input" placeholder="Search products..." />
+        
+        <input type="text" className="search-input" placeholder="Search products..." value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}/>
       </div>
       <div className="cart-container">
         {!user ? (
