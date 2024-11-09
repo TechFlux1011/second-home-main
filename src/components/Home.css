@@ -1,7 +1,7 @@
 .container {
   position: relative;
   padding-top: 60px;
-  background-color: #222222; /* Adjust the padding to match the navbar height */
+  background-color: #f5f0e1; /* Adjust the padding to match the navbar height */
 }
 
 .product-grid {
@@ -207,20 +207,21 @@
   justify-content: center;
   align-items: center;
   height: 20%; /* Adjust height as needed */
-  background: #222;
+  background: #f5f0e1;
   background-size: cover;
 }
 
 .header-title {
-  color: #FFB6A0; /* Pastel salmon color */
+  color: #2a3c4a; /* Pastel salmon color */
   text-align: center;
   font-size: 6rem;
-  text-shadow: 0 0 10px ;
+  font-weight: 800;
+  text-shadow: #9995 0 0 10px ;
 }
 
 .header-subtitle {
-  font-size: 1.2em;
-  color: salmon;
+  font-size: 1.7em;
+  color: #a8b5a1;
   margin-top: -30px;
   padding-bottom: 20px;
 }
@@ -242,8 +243,8 @@
   padding: 10px 20px;
   text-align: center; /* Center text within each tab */
   cursor: pointer;
-  color: #FFB6A0;
-  background-color: salmon;
+  color: #f5f0e1;
+  background-color: #a8b5a1;
   
   font-weight: bold;
   font-size: 1rem;
@@ -255,9 +256,9 @@
 
 .tab:hover {
   transform: scale(1.1); /* Scale up the tab on hover */
-  background: radial-gradient(circle, rgba(255,182,160,1) 0%, rgba(255,105,97,1) 100%); /* Background gradient on hover */
+  background: radial-gradient(circle, #a8b5a1); /* Background gradient on hover */
   transition: 0.3s ease; 
-  color:  white;
+  color:  #f5f0e1;
 }
 
 .sort-filter-container {

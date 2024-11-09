@@ -45,7 +45,7 @@ const Navbar = ({ toggleCart, showCart, cart, removeFromCart, getTotalPrice }) =
         <div className="navbar-title">Second Home</div>
       </div>
       <div className="search-container">
-        <input type="text" className="search-input" placeholder="Search products..." />
+        <input type="text" className="search-input" placeholder="" />
       </div>
       <div className="cart-container">
         {!user ? (
