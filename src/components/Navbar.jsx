@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Navbar.css';
 import { AuthContext } from '../AuthContext';
-import logo from '../logo.jpg';
+import logo from '../logo.ico';
 import cartIcon from '../shopping-cart.png';
 import editIcon from '../components/assets/edit-icon.png'
 import profile from '../profile.jpg';
