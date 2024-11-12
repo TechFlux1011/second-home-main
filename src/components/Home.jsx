@@ -1,10 +1,14 @@
-import React, { useState, useEffect, useContext, useRef } from 'react';
+import React, { Component, useState, useEffect, useContext, useRef } from 'react';
 import './Home.css';
 import { CartContext } from '../CartContext';
 import Navbar from './Navbar';
 import { ProductContext } from '../ProductContext';
 import ListProductButton from './ListProductButton';
 import Profile from './Profile';
+import { Button } from 'ui-neumorphism';
+import 'ui-neumorphism/dist/index.css'
+
+
 
 const Home = () => {
   const [expandedProduct, setExpandedProduct] = useState(null);

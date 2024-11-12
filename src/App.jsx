@@ -8,6 +8,7 @@ import EditProfile from './components/EditProfile'; // Import EditProfile
 import Navbar from './components/Navbar';
 import AuthProvider from './AuthContext';
 import ProductProvider from './ProductContext';
+import { Card, Button } from 'ui-neumorphism';
 
 const App = () => {
   const [cart, setCart] = useState([]);
