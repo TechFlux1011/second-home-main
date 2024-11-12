@@ -6,6 +6,7 @@ import logo from '../logo.jpg';
 import cartIcon from '../shopping-cart.png';
 import editIcon from '../components/assets/edit-icon.png'
 import profile from '../profile.jpg';
+import search from '../components/assets/search-icon.png'
 
 const Navbar = ({ toggleCart, showCart, cart, removeFromCart, getTotalPrice }) => {
   const { user, logout } = useContext(AuthContext);
@@ -45,7 +46,12 @@ const Navbar = ({ toggleCart, showCart, cart, removeFromCart, getTotalPrice }) =
         <div className="navbar-title">Second<span>Home</span></div>
       </div>
       <div className="search-container">
-        <input type="text" className="search-input" placeholder="" />
+        
+        <input type="text" className="search-input" placeholder='' >
+        </input>
+          <button className='search-icon'>
+            <img src= {search} alt='search' />
+          </button>
       </div>
       <div className="cart-container">
         {!user ? (

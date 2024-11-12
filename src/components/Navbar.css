@@ -27,8 +27,9 @@
   margin-right: 10px;
   border-radius: 5px;
   border-radius: 20px;
-  box-shadow: outset 8px 8px 25px #d1c4b9, 
-              outset -8px -8px 25px #ffffff;
+  background: linear-gradient(145deg, #263643, #2d404f);
+  box-shadow:  6px 6px 17px #1f2c36,
+               -6px -6px 17px #354c5e;
 }
 
 .navbar-title {
@@ -49,35 +50,55 @@
   
 }
 
+.search-icon {
+  display: flex;
+  z-index: 1000;
+  scale: 75%;
+  background-color: transparent;
+  border-style: none;
+}
+
+.search-icon:hover {
+  cursor: pointer;
+}
+
 .search-input {
   display: flex;
+  z-index: 1000;
   width: 90%;
   /* max-width: 500px; */
   padding: 10px;
-  margin-left: auto;
+  margin-left: 20px;
+  margin-right: -58px;
   border-radius: 5px;
-  border: 5px solid #d1a15c;
+  border: 1px solid #d1a15c;
   border-radius: 3rem;
-  background-color: #f5f0e1;
-  box-shadow: inset 8px 8px 15px #d1c4b9,
-              inset -8px -8px 15px #f5f0e1;
+  background-image: url('./assets/search-icon.png');
+  background: linear-gradient(145deg, #2d404f, #263643);
+  box-shadow:  6px 6px 17px #1f2c36,
+               -6px -6px 17px #354c5e;
+  
+  
   padding: 15px;
   font-size: 16px;
-  color: #2a3c4a;
+  color: #d1a15c;
   outline: none;
 }
 
 .search-input:hover {
-  box-shadow: inset 5px 5px 10px #d1c4b9,
-  inset -5px -5px 10px #ffffff;
+  background: #2a3c4a;
+  background: linear-gradient(145deg, #263643, #2d404f);
+  box-shadow:  6px 6px 17px #1f2c36,
+               -6px -6px 17px #354c5e;
   transition: .3s;
   text-decoration: none;
-  color: #2a3c4a;
+  color: #d1a15c;
 }
 
 .search-input:active {
-  box-shadow: inset 5px 5px 10px #d1c4b9,
-  inset -5px -5px 10px #ffffff;
+  background: #2a3c4a;
+  box-shadow: inset 6px 6px 17px #1f2c36,
+              inset -6px -6px 17px #354c5e;
   border-color: #d1a15c;
 }
 
@@ -93,7 +114,27 @@
   border: none;
   border-radius: 50%;
   object-fit: cover;
-  height: 40px;
+  height: 40px;  
+  margin-right: 15px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #263643, #2d404f);
+  box-shadow:  6px 6px 17px #1f2c36,
+             -6px -6px 17px #354c5e;
+}
+.profile-button:hover {
+  transform: scale(110%);
+  transition: 0.3s ease;
+  background: #2a3c4a;
+  box-shadow:  6px 6px 17px #1f2c36,
+               -6px -6px 17px #354c5e;
+}
+
+.profile-button:active {
+  transform: scale(98%);
+  transition: 0.3s ease;
+  background: #2a3c4a;
+  box-shadow: inset 6px 6px 17px #1f2c36,
+            inset -6px -6px 17px #354c5e;
 }
 
 .navbar .profile-photo {
@@ -101,16 +142,29 @@
   height: 40px;
   cursor: pointer;
   padding: 0;
-  border-radius: 50%;
 }
 
 .cart-icon {
   height: 24px;
+  background: linear-gradient(145deg, #263643, #2d404f);
+  box-shadow:  6px 6px 17px #1f2c36,
+             -6px -6px 17px #354c5e;
 }
 
 .cart-icon:hover {
   transform: scale(110%);
   transition: 0.3s ease;
+  background: linear-gradient(145deg, #2d404f, #263643);
+  box-shadow:  6px 6px 17px #1f2c36,
+             -6px -6px 17px #354c5e;
+}
+
+.cart-icon:active {
+  transform: scale(110%);
+  transition: 0.3s ease;
+  background: linear-gradient(145deg, #2d404f, #263643);
+  box-shadow:  6px 6px 17px #1f2c36,
+             -6px -6px 17px #354c5e;
 }
 
 .cart-button {
