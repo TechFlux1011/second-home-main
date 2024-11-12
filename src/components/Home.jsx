@@ -144,8 +144,8 @@ const Home = () => {
         showProfile={showProfile}
       />
       <div className="header-title-container">
-        <h1 className="header-title">Welcome to Second Home</h1>
-        <h2 className='header-subtitle'>Find your missing piece</h2>
+        <h1 className="header-title">Welcome to Second<span>Home</span></h1>
+        <h2 className='header-subtitle'>Find your missing piece 🧩</h2>
       </div>
       <div className="tab-bar">
         <button className="tab">Featured Products</button>

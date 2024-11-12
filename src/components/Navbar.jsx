@@ -42,7 +42,7 @@ const Navbar = ({ toggleCart, showCart, cart, removeFromCart, getTotalPrice }) =
     <nav className="navbar">
       <div className="navbar-logo" onClick={() => navigate('/')}>
         <img src={logo} alt="Second Home Logo" className="navbar-logo-img" />
-        <div className="navbar-title">Second Home</div>
+        <div className="navbar-title">Second<span>Home</span></div>
       </div>
       <div className="search-container">
         <input type="text" className="search-input" placeholder="" />
