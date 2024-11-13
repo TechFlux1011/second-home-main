@@ -1,3 +1,43 @@
+/* 1. Use a more-intuitive box-sizing model */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+  margin: 0;
+}
+
+body {
+  /* 3. Add accessible line-height */
+  line-height: 1.5;
+  /* 4. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 5. Improve media defaults */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 6. Inherit fonts for form controls */
+input, button, textarea, select {
+  font: inherit;
+}
+
+/* 7. Avoid text overflows */
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/*
+  9. Create a root stacking context
+*/
+#root, #__next {
+  isolation: isolate;
+}
+
 .container {
   position: relative;
   padding-top: 60px;
@@ -275,6 +315,17 @@ box-shadow:  20px 20px 60px #24333f,
   transition: transform 0.3s, box-shadow 0.3s, transition 0.3s;
 }
 
+.tab-title h2{
+  padding-top: 20px;
+  font-size: 25px;
+}
+
+.tab-title-container {
+  color: #ccc;
+  text-align: center;
+  font-size: larger;
+}
+
 /* Hover effect */
 .tab:hover {
   transform: scale(1.03);
@@ -289,7 +340,7 @@ box-shadow:  20px 20px 60px #24333f,
 
 /* Active or pressed state */
 .tab:active {
-  border-radius: 39px;
+  border-radius: 1.3rem;
   background: #2a3c4a;
   box-shadow: inset 6px 6px 12px #23323e,
               inset -6px -6px 12px #314656;
@@ -297,42 +348,177 @@ box-shadow:  20px 20px 60px #24333f,
   transform: scale(0.99);
 }
 
-
 .sort-filter-container {
   display: flex;
+  border: none;
+  padding: 12px 20px;
+  margin: auto;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #f5f0e1;
+  background: #2a3c4a;
+  border-radius: 1.3rem;
+  box-shadow: 6px 6px 12px #1d2a34, -6px -6px 12px #374e60;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
   justify-content: flex-end;
+}
+
+.dropdown-container {
+  position: relative;
+}
+
+.dropdown-label {
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #f5f0e1;
+  background: #2a3c4a;
+  border-radius: 1.3rem;
+  cursor: pointer;
+  box-shadow: 6px 6px 12px #1d2a34, -6px -6px 12px #374e60;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.sort-filter-button {
+  border: none;
+  padding: 12px 20px;
+  margin: auto;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #f5f0e1;
+  background: #2a3c4a;
+  border-radius: 1.3rem;
+  box-shadow: 6px 6px 12px #1d2a34, -6px -6px 12px #374e60;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.sort-button,
+.filter-button {
+  border: none;
+  padding: 12px 20px;
+  margin: auto;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #f5f0e1;
+  background: #2a3c4a;
+  border-radius: 1.3rem;
+  box-shadow: 6px 6px 12px #1d2a34, -6px -6px 12px #374e60;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.sort-button:hover, .filter-button:hover {
+  transform: scale(1.05);
+  box-shadow: 8px 8px 16px #1d2a34, -8px -8px 16px #374e60;
+}
+
+.dropdown-content  {
+  /* position: absolute; */
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #2a3c4a;
+  border-radius: 1.3rem;
+  padding: 20px;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 15px;
+  animation: dropdownExpand 0.3s ease-in-out;
+  z-index: 100;
+}
+
+.dropdown-options  {
+  border: none;
+  padding: 12px 20px;
+  margin: auto;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #f5f0e1;
+  background: #2a3c4a;
+  border-radius: 1.3rem;
+  box-shadow: 6px 6px 12px #1d2a34, -6px -6px 12px #374e60;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  appearance: none;
+  text-align: center;
+}
+
+@keyframes dropdownExpand {
+  from {
+    opacity: 0;
+    transform: scaleY(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+.dropdown-item {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-end;
+}
+
+.neumorphic-dropdown {
+  appearance: none;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border-radius: 1.3rem;
+  border: none;
+  background: #2a3c4a;
+  box-shadow: 6px 6px 12px #1d2a34, -6px -6px 12px #374e60;
+  color: #f5f0e1;
+  cursor: pointer;
+  outline: none;
+  width: 100%;
+  margin: 20px;
+}
+
+/* .neumorphic-dropdown:hover,
+.neumorphic-dropdown:focus {
+  box-shadow: inset 4px 4px 8px #1d2a34, inset -4px -4px 8px #374e60;
+} */
+
+/* .sort-filter-container {
+  display: flex;
+  justify-content: center;
   gap: 20px;
   margin: 20px;
   padding: 10px 20px;
-  text-align: center;
   cursor: pointer;
   color: #f5f0e1;
   background: #2a3c4a;
   font-weight: bold;
   font-size: 1rem;
-  
-  /* Neumorphic raised shadow */
   box-shadow:  6px 6px 12px #1d2a34,
                -6px -6px 12px #374e60;
-  
   border-radius: 1.3rem;
   transition: transform 0.3s, box-shadow 0.3s, transition 0.3s;
-}
+} */
 
-.dropdown {
+/* .dropdown {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
+  cursor: pointer;
+  margin: 20px;
+  padding: 10px 20px;
+  border-radius: 1.3rem;
+  box-shadow:  6px 6px 12px #1d2a34,
+  -6px -6px 12px #374e60;
+} */
 
-.dropdown-label {
+/* .dropdown-label {
   font-weight: bold;
   color: #555;
   margin-bottom: 8px;
-}
+} */
 
-.neumorphic-dropdown {
-  appearance: none; /* Remove default arrow */
+/* .neumorphic-dropdown {
+  appearance: none;
   padding: 12px 20px;
   font-size: 1rem;
   border-radius: 1.3rem;
@@ -345,19 +531,19 @@ box-shadow:  20px 20px 60px #24333f,
   cursor: pointer;
   transition: transform 0.3s, box-shadow 0.3s, transition 0.3s;
   
-}
+} */
 
 
 
-.neumorphic-dropdown:hover {
+/* .neumorphic-dropdown:hover {
   box-shadow: 4px 4px 10px #b8b9be, -4px -4px 10px #ffffff;
 }
 
 .neumorphic-dropdown:focus {
   box-shadow: inset 4px 4px 8px #b8b9be, inset -4px -4px 8px #ffffff;
-}
+} */
 
-.search-input {
+/* .search-input {
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
@@ -368,11 +554,11 @@ box-shadow:  20px 20px 60px #24333f,
 
 .sort-button,
 .filter-button {
-  /* text-align: center; */
+  z-index: 1000;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  /* width: auto; */
+  background-image: none;
   border-style: none;
   padding: 10px 20px;
   text-align: center;
@@ -382,26 +568,15 @@ box-shadow:  20px 20px 60px #24333f,
   font-weight: bold;
   font-size: 1rem;
   
-  /* Neumorphic raised shadow */
   box-shadow:  6px 6px 12px #1d2a34,
                -6px -6px 12px #374e60;
   
-  
   width: 20%;
   border-radius: 1.3rem;
-  transition: transform 0.3s, box-shadow 0.3s, transition 0.3s; /* Ensure no background image is displayed */
-}
+  transition: transform 0.3s, box-shadow 0.3s, transition 0.3s;
+} */
 
 
 
-.tab-title h2{
-  padding-top: 20px;
-  font-size: 25px;
-}
 
-.tab-title-container {
-  color: #ccc;
-  text-align: center;
-  font-size: larger;
-}
 

@@ -1,0 +1,169 @@
+.header-tab {
+    color: #FFB6A0;
+    padding: 20px;
+  }
+  
+  .tab-bar {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+    padding: 30px;
+  }
+  
+  
+  .tab {
+    border-style: none;
+    padding: 10px 20px;
+    text-align: center;
+    cursor: pointer;
+    color: #f5f0e1;
+    font-weight: bold;
+    font-size: 1rem;
+    
+    /* Neumorphic raised shadow */
+    background: linear-gradient(145deg, #263643, #2d404f);
+    box-shadow:  6px 6px 12px #1d2a34,
+                 -6px -6px 12px #374e60;
+    
+    
+    width: 20%;
+    border-radius: 1.3rem;
+    transition: transform 0.3s, box-shadow 0.3s, transition 0.3s;
+  }
+  
+  .tab-title h2{
+    padding-top: 20px;
+    font-size: 25px;
+  }
+  
+  .tab-title-container {
+    color: #ccc;
+    text-align: center;
+    font-size: larger;
+  }
+  
+  /* Hover effect */
+  .tab:hover {
+    transform: scale(1.03);
+    border-radius: 39px;
+    background: #2a3c4a;
+    box-shadow:  6px 6px 12px #1d2a34,
+                 -6px -6px 12px #374e60;
+    
+    transition: 0.3s;
+    color: #f5f0e1;
+  }
+  
+  /* Active or pressed state */
+  .tab:active {
+    border-radius: 1.3rem;
+    background: #2a3c4a;
+    box-shadow: inset 6px 6px 12px #23323e,
+                inset -6px -6px 12px #314656;
+    
+    transform: scale(0.99);
+  }
+  
+  .sort-filter-container {
+    display: flex;
+    border: none;
+    padding: 12px 20px;
+    margin: auto;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #f5f0e1;
+    background: #2a3c4a;
+    border-radius: 1.3rem;
+    box-shadow: 6px 6px 12px #1d2a34, -6px -6px 12px #374e60;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    justify-content: flex-end;
+  }
+  
+  .sort-filter-button {
+    border: none;
+    padding: 12px 20px;
+    margin: auto;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #f5f0e1;
+    background: #2a3c4a;
+    border-radius: 1.3rem;
+    box-shadow: 6px 6px 12px #1d2a34, -6px -6px 12px #374e60;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .sort-button,
+  .filter-button {
+    border: none;
+    padding: 12px 20px;
+    margin: auto;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #f5f0e1;
+    background: #2a3c4a;
+    border-radius: 1.3rem;
+    box-shadow: 6px 6px 12px #1d2a34, -6px -6px 12px #374e60;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .sort-button:hover, .filter-button:hover {
+    transform: scale(1.05);
+    box-shadow: 8px 8px 16px #1d2a34, -8px -8px 16px #374e60;
+  }
+  
+  .dropdown-content  {
+    /* position: absolute; */
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #2a3c4a;
+    border-radius: 1.3rem;
+    box-shadow: 6px 6px 12px #1d2a34, -6px -6px 12px #374e60;
+    padding: 20px;
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 15px;
+    animation: dropdownExpand 0.3s ease-in-out;
+    z-index: 100;
+  }
+  
+  @keyframes dropdownExpand {
+    from {
+      opacity: 0;
+      transform: scaleY(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scaleY(1);
+    }
+  }
+  
+  .dropdown-item {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-end;
+  }
+  
+  .dropdown-label {
+    font-weight: bold;
+    color: #f5f0e1;
+    margin-bottom: 8px;
+  }
+  
+  .neumorphic-dropdown {
+    appearance: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 1.3rem;
+    border: none;
+    background: #2a3c4a;
+    box-shadow: 6px 6px 12px #1d2a34, -6px -6px 12px #374e60;
+    color: #f5f0e1;
+    cursor: pointer;
+    outline: none;
+    width: 100%;
+    margin: 20px;
+  }
