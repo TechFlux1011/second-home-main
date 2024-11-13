@@ -129,7 +129,7 @@ const Home = () => {
   };
 
   const searchProducts = (products) => {
-    return products.filter((product) => 
+    return products.filter((product) =>
       product.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
   };
@@ -138,9 +138,9 @@ const Home = () => {
 
   return (
     <div className="container">
-      <Navbar 
-        toggleCart={toggleCart} 
-        showCart={showCart} 
+      <Navbar
+        toggleCart={toggleCart}
+        showCart={showCart}
         cart={cart}
         removeFromCart={removeFromCart}
         getTotalPrice={getTotalPrice}
@@ -158,7 +158,7 @@ const Home = () => {
       </div>
       <div className='tab-title-container'><h2 className='tab-title'>Featured Products</h2></div>
 
-      <div className="search-sort-filter-container">
+      <div className="sort-filter-container">
         {/* <input
           type="text"
           className="search-input"
@@ -166,14 +166,19 @@ const Home = () => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         /> */}
-        <select className="sort-dropdown" value={sortOption} onChange={(e) => setSortOption(e.target.value)}>
-          <option value="default">Sort by</option>
-          <option value="price-asc">Price: Low to High</option>
-          <option value="price-desc">Price: High to Low</option>
-          <option value="title-asc">Title: A to Z</option>
-          <option value="title-desc">Title: Z to A</option>
-        </select>
-        <select className="filter-dropdown" value={filterOption} onChange={(e) => setFilterOption(e.target.value)}>
+
+
+          <select className="sort-button" value={sortOption} onChange={(e) => setSortOption(e.target.value)}>
+            <option value="default">Sort by</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="title-asc">Title: A to Z</option>
+            <option value="title-desc">Title: Z to A</option>
+
+          </select>
+
+
+        <select className="filter-button" value={filterOption} onChange={(e) => setFilterOption(e.target.value)}>
           <option value="all">Filter by category</option>
           <option value="electronics">Electronics</option>
           <option value="jewelery">Jewelery</option>
