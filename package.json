@@ -2,7 +2,7 @@
   "name": "second-home",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://TechFlux.github.io/second-home",
+  "homepage": "https://techflux1011.github.io/second-home-main/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
