@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect, useContext, useRef } from 'react';
+import React, { useMemo, useState, useEffect, useContext, useRef } from 'react';
 import './Home.css';
 import { CartContext } from '../CartContext';
 import Navbar from './Navbar';
@@ -6,7 +6,7 @@ import { ProductContext } from '../ProductContext';
 import ListProductButton from './ListProductButton';
 import Profile from './Profile';
 import CustomDropdown from './CustomDropdown';
-import 'ui-neumorphism/dist/index.css'
+import 'ui-neumorphism/dist/index.css';
 
 
 
@@ -15,7 +15,11 @@ const Home = () => {
   const [expandedProduct, setExpandedProduct] = useState(null);
   const [showCart, setShowCart] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth <= 768);
+  }, []);
   const { cart, addToCart, removeFromCart } = useContext(CartContext);
   const { products } = useContext(ProductContext);
   const expandedContentRef = useRef(null);
@@ -46,7 +50,7 @@ const Home = () => {
   const handleExpand = (product) => {
     setExpandedProduct(product);
     setDescriptionExpanded(false);
-    setTimeout(() => {
+    requestAnimationFrame(() => {
       const overlayElement = document.querySelector('.expanded-overlay');
       const contentElement = document.querySelector('.expanded-content');
       if (overlayElement) {
@@ -55,7 +59,7 @@ const Home = () => {
       if (contentElement) {
         contentElement.classList.add('show');
       }
-    }, 0);
+    });
   };
 
   const handleClose = () => {
@@ -92,7 +96,7 @@ const Home = () => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (expandedContentRef.current && !expandedContentRef.current.contains(event.target)) {
+      if (expandedContentRef.current !== null && !expandedContentRef.current.contains(event.target)) {
         handleClose();
       }
     };
@@ -156,7 +160,9 @@ const Home = () => {
     { label: "Women's Clothing", value: "women's clothing" },
   ];
 
-  const sortedAndFilteredProducts = searchProducts(sortProducts(filterProducts(products)));
+  const sortedAndFilteredProducts = useMemo(() => {
+    return searchProducts(sortProducts(filterProducts(products)));
+  }, [products, sortOption, filterOption, searchQuery]);
 
   return (
     <div className="container">
@@ -212,7 +218,7 @@ const Home = () => {
             <div className="image-container">
               <img src={expandedProduct.image} alt={expandedProduct.title} />
             </div>
-            <div>
+              <div className={`description ${descriptionExpanded ? 'expanded' : ''}`}>
               <h2>{expandedProduct.title}</h2>
               <div className={`description ${descriptionExpanded ? 'collapsed' : ''}`}>
                 {expandedProduct.description}
