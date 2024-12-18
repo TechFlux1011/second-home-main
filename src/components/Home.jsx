@@ -151,20 +151,6 @@ const Home = () => {
     );
   };
 
-  const sortOptions = [
-    { label: "Price: High to Low", value: "price-desc" },
-    { label: "Price: Low to High", value: "price-asc" },
-    { label: "Title: A to Z", value: "title-asc" },
-    { label: "Title: Z to A", value: "title-desc" },
-  ];
-
-  const filterOptions = [
-    { label: "All Categories", value: "all" },
-    { label: "Electronics", value: "electronics" },
-    { label: "Men's Clothing", value: "men's clothing" },
-    { label: "Jewelry", value: "jewelery" },
-    { label: "Women's Clothing", value: "women's clothing" },
-  ];
 
   const sortOptions = [
     { label: "Price: High to Low", value: "price-desc" },
