@@ -56,11 +56,14 @@
   scale: 75%;
   background-color: transparent;
   border-style: none;
+  border-radius: 15%;
 }
 
 .search-icon:hover {
   cursor: pointer;
 }
+
+
 
 .search-input {
   display: flex;
@@ -95,7 +98,7 @@
   color: #d1a15c;
 }
 
-.search-input:active {
+.search-input:focus {
   background: #2a3c4a;
   box-shadow: inset 6px 6px 17px #1f2c36,
               inset -6px -6px 17px #354c5e;

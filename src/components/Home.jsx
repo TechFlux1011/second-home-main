@@ -1,10 +1,15 @@
-import React, { useState, useEffect, useContext, useRef } from 'react';
+import React, { Component, useState, useEffect, useContext, useRef } from 'react';
 import './Home.css';
 import { CartContext } from '../CartContext';
 import Navbar from './Navbar';
 import { ProductContext } from '../ProductContext';
 import ListProductButton from './ListProductButton';
 import Profile from './Profile';
+import CustomDropdown from './CustomDropdown';
+import 'ui-neumorphism/dist/index.css'
+
+
+
 
 const Home = () => {
   const [expandedProduct, setExpandedProduct] = useState(null);
@@ -16,6 +21,7 @@ const Home = () => {
   const expandedContentRef = useRef(null);
   const [descriptionExpanded, setDescriptionExpanded] = useState(false);
   const [showReadMore, setShowReadMore] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
   const [sortOption, setSortOption] = useState('default');
   const [filterOption, setFilterOption] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
@@ -102,6 +108,11 @@ const Home = () => {
     };
   }, [expandedProduct]);
 
+  const toggleDropdown = () => {
+    setIsExpanded(!isExpanded);
+  };
+
+
   const sortProducts = (products) => {
     switch (sortOption) {
       case 'price-asc':
@@ -125,18 +136,33 @@ const Home = () => {
   };
 
   const searchProducts = (products) => {
-    return products.filter((product) => 
+    return products.filter((product) =>
       product.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
   };
+
+  const sortOptions = [
+    { label: "Price: High to Low", value: "price-desc" },
+    { label: "Price: Low to High", value: "price-asc" },
+    { label: "Title: A to Z", value: "title-asc" },
+    { label: "Title: Z to A", value: "title-desc" },
+  ];
+
+  const filterOptions = [
+    { label: "All Categories", value: "all" },
+    { label: "Electronics", value: "electronics" },
+    { label: "Men's Clothing", value: "men's clothing" },
+    { label: "Jewelry", value: "jewelery" },
+    { label: "Women's Clothing", value: "women's clothing" },
+  ];
 
   const sortedAndFilteredProducts = searchProducts(sortProducts(filterProducts(products)));
 
   return (
     <div className="container">
-      <Navbar 
-        toggleCart={toggleCart} 
-        showCart={showCart} 
+      <Navbar
+        toggleCart={toggleCart}
+        showCart={showCart}
         cart={cart}
         removeFromCart={removeFromCart}
         getTotalPrice={getTotalPrice}
@@ -152,30 +178,20 @@ const Home = () => {
         <button className="tab">New Arrivals</button>
         <button className="tab">Best Sellers</button>
       </div>
-      <div className='tab-title-container'><h2 className='tab-title'>Featured Products</h2></div>
 
-      <div className="search-sort-filter-container">
-        {/* <input
-          type="text"
-          className="search-input"
-          placeholder="Search products..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        /> */}
-        <select className="sort-dropdown" value={sortOption} onChange={(e) => setSortOption(e.target.value)}>
-          <option value="default">Sort by</option>
-          <option value="price-asc">Price: Low to High</option>
-          <option value="price-desc">Price: High to Low</option>
-          <option value="title-asc">Title: A to Z</option>
-          <option value="title-desc">Title: Z to A</option>
-        </select>
-        <select className="filter-dropdown" value={filterOption} onChange={(e) => setFilterOption(e.target.value)}>
-          <option value="all">Filter by category</option>
-          <option value="electronics">Electronics</option>
-          <option value="jewelery">Jewelery</option>
-          <option value="men's clothing">Men's Clothing</option>
-          <option value="women's clothing">Women's Clothing</option>
-        </select>
+      <div className="sort-filter-container">
+        <CustomDropdown
+          label="Sort"
+          options={sortOptions}
+          selectedOption={sortOption}
+          onOptionSelect={setSortOption}
+        />
+        <CustomDropdown
+          label="Filter by"
+          options={filterOptions}
+          selectedOption={filterOption}
+          onOptionSelect={setFilterOption}
+        />
       </div>
 
       <div className="product-grid">
@@ -229,4 +245,8 @@ const Home = () => {
   );
 };
 
+
+
 export default Home;
+
+
