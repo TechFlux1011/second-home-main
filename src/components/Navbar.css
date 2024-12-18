@@ -10,7 +10,12 @@
   box-sizing: border-box;
   top: 0;
   z-index: 1000;
+<<<<<<< HEAD
   box-shadow: #9992 0 1px 10px;
+=======
+  box-shadow: #222 0 1px 10px;
+  border-radius: .5rem;
+>>>>>>> dc9cba75e91e4240113956d634eb2440b9ebc83f
 }
 
 .navbar-logo {
@@ -34,9 +39,15 @@
 
 .navbar-title {
   font-size: 1.5rem;
+<<<<<<< HEAD
   color: #f5f0e1;
   font-weight:800
   
+=======
+  color: #FFB6A0;
+  font-weight: bolder;
+  text-wrap: nowrap;
+>>>>>>> dc9cba75e91e4240113956d634eb2440b9ebc83f
 }
 
 .navbar-title span {
@@ -47,6 +58,7 @@
   display: flex;
   position: relative;
   width: 65%;
+  margin-right: 10px;
   
 }
 
@@ -68,8 +80,12 @@
   width: 90%;
   /* max-width: 500px; */
   padding: 10px;
+<<<<<<< HEAD
   margin-left: 20px;
   margin-right: -58px;
+=======
+  margin-left: 10px;
+>>>>>>> dc9cba75e91e4240113956d634eb2440b9ebc83f
   border-radius: 5px;
   border: 1px solid #d1a15c;
   border-radius: 3rem;

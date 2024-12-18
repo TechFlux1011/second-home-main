@@ -6,7 +6,11 @@ import logo from '../logo.jpg';
 import cartIcon from '../shopping-cart.png';
 import editIcon from '../components/assets/edit-icon.png'
 import profile from '../profile.jpg';
+<<<<<<< HEAD
 import search from '../components/assets/search-icon.png'
+=======
+// import './Home.jsx'
+>>>>>>> dc9cba75e91e4240113956d634eb2440b9ebc83f
 
 const Navbar = ({ toggleCart, showCart, cart, removeFromCart, getTotalPrice }) => {
   const { user, logout } = useContext(AuthContext);
@@ -14,11 +18,13 @@ const Navbar = ({ toggleCart, showCart, cart, removeFromCart, getTotalPrice }) =
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const profileRef = useRef(null);
   const cartRef = useRef(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleProfileToggle = () => {
     setShowProfileDropdown((prev) => !prev);
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleClickOutside = (event) => {
     if (profileRef.current && !profileRef.current.contains(event.target)) {
       setShowProfileDropdown(false);
@@ -37,7 +43,8 @@ const Navbar = ({ toggleCart, showCart, cart, removeFromCart, getTotalPrice }) =
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [showProfileDropdown, showCart]);
+  }, [showProfileDropdown, showCart, handleClickOutside]);
+  
 
   return (
     <nav className="navbar">
@@ -47,11 +54,16 @@ const Navbar = ({ toggleCart, showCart, cart, removeFromCart, getTotalPrice }) =
       </div>
       <div className="search-container">
         
+<<<<<<< HEAD
         <input type="text" className="search-input" placeholder='' >
         </input>
           <button className='search-icon'>
             <img src= {search} alt='search' />
           </button>
+=======
+        <input type="text" className="search-input" placeholder="Search products..." value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}/>
+>>>>>>> dc9cba75e91e4240113956d634eb2440b9ebc83f
       </div>
       <div className="cart-container">
         {!user ? (
