@@ -1,3 +1,4 @@
+import React, { useMemo, useState, useEffect, useContext, useRef } from 'react';
 import React, { Component, useState, useEffect, useContext, useRef } from 'react';
 import './Home.css';
 import { CartContext } from '../CartContext';
@@ -10,12 +11,21 @@ import 'ui-neumorphism/dist/index.css'
 
 
 
+import CustomDropdown from './CustomDropdown';
+import 'ui-neumorphism/dist/index.css';
+
+
+
 
 const Home = () => {
   const [expandedProduct, setExpandedProduct] = useState(null);
   const [showCart, setShowCart] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth <= 768);
+  }, []);
   const { cart, addToCart, removeFromCart } = useContext(CartContext);
   const { products } = useContext(ProductContext);
   const expandedContentRef = useRef(null);
@@ -46,7 +56,7 @@ const Home = () => {
   const handleExpand = (product) => {
     setExpandedProduct(product);
     setDescriptionExpanded(false);
-    setTimeout(() => {
+    requestAnimationFrame(() => {
       const overlayElement = document.querySelector('.expanded-overlay');
       const contentElement = document.querySelector('.expanded-content');
       if (overlayElement) {
@@ -55,7 +65,7 @@ const Home = () => {
       if (contentElement) {
         contentElement.classList.add('show');
       }
-    }, 0);
+    });
   };
 
   const handleClose = () => {
@@ -92,7 +102,7 @@ const Home = () => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (expandedContentRef.current && !expandedContentRef.current.contains(event.target)) {
+      if (expandedContentRef.current !== null && !expandedContentRef.current.contains(event.target)) {
         handleClose();
       }
     };
@@ -156,7 +166,24 @@ const Home = () => {
     { label: "Women's Clothing", value: "women's clothing" },
   ];
 
-  const sortedAndFilteredProducts = searchProducts(sortProducts(filterProducts(products)));
+  const sortOptions = [
+    { label: "Price: High to Low", value: "price-desc" },
+    { label: "Price: Low to High", value: "price-asc" },
+    { label: "Title: A to Z", value: "title-asc" },
+    { label: "Title: Z to A", value: "title-desc" },
+  ];
+
+  const filterOptions = [
+    { label: "All Categories", value: "all" },
+    { label: "Electronics", value: "electronics" },
+    { label: "Men's Clothing", value: "men's clothing" },
+    { label: "Jewelry", value: "jewelery" },
+    { label: "Women's Clothing", value: "women's clothing" },
+  ];
+
+  const sortedAndFilteredProducts = useMemo(() => {
+    return searchProducts(sortProducts(filterProducts(products)));
+  }, [products, sortOption, filterOption, searchQuery]);
 
   return (
     <div className="container">
@@ -212,7 +239,7 @@ const Home = () => {
             <div className="image-container">
               <img src={expandedProduct.image} alt={expandedProduct.title} />
             </div>
-            <div>
+              <div className={`description ${descriptionExpanded ? 'expanded' : ''}`}>
               <h2>{expandedProduct.title}</h2>
               <div className={`description ${descriptionExpanded ? 'collapsed' : ''}`}>
                 {expandedProduct.description}
