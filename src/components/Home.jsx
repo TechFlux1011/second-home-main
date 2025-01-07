@@ -139,7 +139,7 @@ const Home = () => {
           value={sortOption} 
           onChange={(e) => setSortOption(e.target.value)}
         >
-          <option value="default">Sort by</option>
+          <option value="default"><a href="https://www.flaticon.com/free-icons/filter" title="filter icons"></a></option>
           <option value="price-asc">Price: Low to High</option>
           <option value="price-desc">Price: High to Low</option>
           <option value="title-asc">Title: A to Z</option>

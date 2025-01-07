@@ -1,54 +1,7 @@
 /* src/components/ProductList.css */
 
 /* Styling for the search bar container */
-.search-bar {
-  position: relative;
-}
 
-/* General styling for the search input */
-.search-input {
-  width: 45vw;
-  padding: 10px;
-}
-
-/* Styling for the suggestions dropdown */
-.suggestions-dropdown {
-  position: absolute;
-  width: 45vw;
-  top: 100%;
-  left: 1rem;
-  right: 0;
-  background: linear-gradient(145deg, #2d404f, #263643);
-  box-shadow:  6px 6px 17px #1f2c36,
-               -6px -6px 17px #354c5e;
-  border: 1px solid #d1a15c;
-  border-radius: 1.3rem;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  max-height: 200px;
-  overflow-y: auto;
-}
-
-/* Styling for each search suggestion */
-.suggestion-item {
-  padding: 10px 20px;
-  cursor: pointer;
-  border-bottom: 1px solid #ddd;
-}
-
-/* Styling for hovered suggestions */
-.suggestion-item:hover {
-  background-color: #f0f0f0;
-}
-
-/* Styling for the category section header */
-.category-header {
-  padding: 10px 20px;
-  background-color: #263643;
-  color: #d1a15c;
-  font-weight: bold;
-}
 
 /* Styling for the product list container */
 .product-list {
