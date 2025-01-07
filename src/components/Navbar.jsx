@@ -55,12 +55,6 @@ const Navbar = ({ toggleCart, showCart, cart, removeFromCart, getTotalPrice }) =
         <img src={logo} alt="Second Home Logo" className="navbar-logo-img" />
         <div className="navbar-title">Second<span>Home</span></div>
       </div>
-      <div className="search-container">
-      <SearchBar products={products} onSearch={handleSearch} />
-          <button className='search-icon'>
-            <img src= {search} alt='search' />
-          </button>
-      </div>
       <div className="cart-container">
         {!user ? (
           <button className="auth-button" onClick={() => navigate('/auth')}>Sign Up / Login</button>

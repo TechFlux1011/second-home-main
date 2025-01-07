@@ -1,13 +1,10 @@
-import React, { Component, useState, useEffect, useContext, useRef } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import './Home.css';
 import { CartContext } from '../CartContext';
 import Navbar from './Navbar';
 import { ProductContext } from '../ProductContext';
 import ListProductButton from './ListProductButton';
 import Profile from './Profile';
-import 'ui-neumorphism/dist/index.css'
-
-
 
 const Home = () => {
   const [expandedProduct, setExpandedProduct] = useState(null);
@@ -15,7 +12,7 @@ const Home = () => {
   const [showProfile, setShowProfile] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const { cart, addToCart, removeFromCart } = useContext(CartContext);
-  const { products } = useContext(ProductContext);
+  const { products, setFilteredProducts } = useContext(ProductContext);
   const expandedContentRef = useRef(null);
   const [descriptionExpanded, setDescriptionExpanded] = useState(false);
   const [showReadMore, setShowReadMore] = useState(false);
@@ -40,33 +37,61 @@ const Home = () => {
     }
   }, [expandedProduct]);
 
+  // New function to handle sorting and filtering
+  const getSortedAndFilteredProducts = () => {
+    let filtered = [...products];
+
+    // Apply category filter
+    if (filterOption !== 'all') {
+      filtered = filtered.filter(product => product.category === filterOption);
+    }
+
+    // Apply search filter
+    if (searchQuery) {
+      filtered = filtered.filter(product => 
+        product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        product.description.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    // Apply sorting
+    switch (sortOption) {
+      case 'price-asc':
+        filtered.sort((a, b) => a.price - b.price);
+        break;
+      case 'price-desc':
+        filtered.sort((a, b) => b.price - a.price);
+        break;
+      case 'title-asc':
+        filtered.sort((a, b) => a.title.localeCompare(b.title));
+        break;
+      case 'title-desc':
+        filtered.sort((a, b) => b.title.localeCompare(a.title));
+        break;
+      default:
+        break;
+    }
+
+    return filtered;
+  };
+
   const handleExpand = (product) => {
     setExpandedProduct(product);
     setDescriptionExpanded(false);
     setTimeout(() => {
       const overlayElement = document.querySelector('.expanded-overlay');
       const contentElement = document.querySelector('.expanded-content');
-      if (overlayElement) {
-        overlayElement.classList.add('show');
-      }
-      if (contentElement) {
-        contentElement.classList.add('show');
-      }
+      if (overlayElement) overlayElement.classList.add('show');
+      if (contentElement) contentElement.classList.add('show');
     }, 0);
   };
 
   const handleClose = () => {
     const overlayElement = document.querySelector('.expanded-overlay');
     const contentElement = document.querySelector('.expanded-content');
-    if (overlayElement) {
-      overlayElement.classList.remove('show');
-    }
-    if (contentElement) {
-      contentElement.classList.remove('show');
-    }
-    setTimeout(() => {
-      setExpandedProduct(null);
-    }, 300);
+    if (overlayElement) overlayElement.classList.remove('show');
+    if (contentElement) contentElement.classList.remove('show');
+    setTimeout(() => setExpandedProduct(null), 300);
   };
 
   const handleAddToCart = (product) => {
@@ -75,41 +100,16 @@ const Home = () => {
     setShowCart(true);
   };
 
-  const toggleCart = () => {
-    setShowCart(!showCart);
-  };
+  const toggleCart = () => setShowCart(!showCart);
 
-  const toggleProfile = () => {
-    setShowProfile(!showProfile);
-  };
+  const toggleProfile = () => setShowProfile(!showProfile);
 
   const getTotalPrice = () => {
     return cart.reduce((total, item) => total + item.price, 0).toFixed(2);
   };
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (expandedContentRef.current && !expandedContentRef.current.contains(event.target)) {
-        handleClose();
-      }
-    };
+  const sortedAndFilteredProducts = getSortedAndFilteredProducts();
 
-    if (expandedProduct) {
-      document.addEventListener('mousedown', handleClickOutside);
-    } else {
-      document.removeEventListener('mousedown', handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [expandedProduct]);
-
-
-
-
-
-  const sortedAndFilteredProducts = products
   return (
     <div className="container">
       <Navbar 
@@ -123,32 +123,34 @@ const Home = () => {
       />
       <div className="header-title-container">
         <h1 className="header-title">Welcome to Second<span>Home</span></h1>
-        <h2 className='header-subtitle'>Find your missing piece 🧩</h2>
+        <h2 className="header-subtitle">Find your missing piece 🧩</h2>
       </div>
-      <div className="tab-bar">
-        <button className="tab">Featured Products</button>
-        <button className="tab">New Arrivals</button>
-        <button className="tab">Best Sellers</button>
-      </div>
-      <div className='tab-title-container'><h2 className='tab-title'>Featured Products</h2></div>
-
+      
       <div className="search-sort-filter-container">
-        {/* <input
+        <input
           type="text"
           className="search-input"
           placeholder="Search products..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-        /> */}
-        <select className="sort-dropdown" value={sortOption} onChange={(e) => setSortOption(e.target.value)}>
+        />
+        <select 
+          className="sort-dropdown" 
+          value={sortOption} 
+          onChange={(e) => setSortOption(e.target.value)}
+        >
           <option value="default">Sort by</option>
           <option value="price-asc">Price: Low to High</option>
           <option value="price-desc">Price: High to Low</option>
           <option value="title-asc">Title: A to Z</option>
           <option value="title-desc">Title: Z to A</option>
         </select>
-        <select className="filter-dropdown" value={filterOption} onChange={(e) => setFilterOption(e.target.value)}>
-          <option value="all">Filter by category</option>
+        <select 
+          className="filter-dropdown" 
+          value={filterOption} 
+          onChange={(e) => setFilterOption(e.target.value)}
+        >
+          <option value="all">All Categories</option>
           <option value="electronics">Electronics</option>
           <option value="jewelery">Jewelery</option>
           <option value="men's clothing">Men's Clothing</option>
@@ -168,6 +170,7 @@ const Home = () => {
           </div>
         ))}
       </div>
+      
       {expandedProduct && (
         <div className="expanded-overlay">
           <div className="expanded-content" ref={expandedContentRef}>
@@ -176,7 +179,7 @@ const Home = () => {
             </div>
             <div>
               <h2>{expandedProduct.title}</h2>
-              <div className={`description ${descriptionExpanded ? 'collapsed' : ''}`}>
+              <div className={`description ${descriptionExpanded ? 'expanded' : ''}`}>
                 {expandedProduct.description}
               </div>
               {!descriptionExpanded && showReadMore && (
@@ -190,11 +193,14 @@ const Home = () => {
             </div>
             <div className="add-to-cart-container">
               <div className="price">${expandedProduct.price.toFixed(2)}</div>
-              <button className="add-to-cart" onClick={() => handleAddToCart(expandedProduct)}>Add to Cart</button>
+              <button className="add-to-cart" onClick={() => handleAddToCart(expandedProduct)}>
+                Add to Cart
+              </button>
             </div>
           </div>
         </div>
       )}
+      
       <ListProductButton />
       {isMobile && showProfile && (
         <div className="expanded-overlay">
