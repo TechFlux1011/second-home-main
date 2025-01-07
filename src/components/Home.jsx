@@ -5,7 +5,6 @@ import Navbar from './Navbar';
 import { ProductContext } from '../ProductContext';
 import ListProductButton from './ListProductButton';
 import Profile from './Profile';
-import { Button } from 'ui-neumorphism';
 import 'ui-neumorphism/dist/index.css'
 
 
@@ -106,36 +105,11 @@ const Home = () => {
     };
   }, [expandedProduct]);
 
-  const sortProducts = (products) => {
-    switch (sortOption) {
-      case 'price-asc':
-        return [...products].sort((a, b) => a.price - b.price);
-      case 'price-desc':
-        return [...products].sort((a, b) => b.price - a.price);
-      case 'title-asc':
-        return [...products].sort((a, b) => a.title.localeCompare(b.title));
-      case 'title-desc':
-        return [...products].sort((a, b) => b.title.localeCompare(a.title));
-      default:
-        return products;
-    }
-  };
 
-  const filterProducts = (products) => {
-    if (filterOption === 'all') {
-      return products;
-    }
-    return products.filter((product) => product.category === filterOption);
-  };
 
-  const searchProducts = (products) => {
-    return products.filter((product) => 
-      product.title.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-  };
 
-  const sortedAndFilteredProducts = searchProducts(sortProducts(filterProducts(products)));
 
+  const sortedAndFilteredProducts = products
   return (
     <div className="container">
       <Navbar 

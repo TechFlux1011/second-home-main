@@ -3,13 +3,29 @@ import { Link } from 'react-router-dom';
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+useEffect(() => {
+  fetch('https://fakestoreapi.com/products')
+    .then((response) => response.json())
+    .then((data) => {
+      setProducts(data);
+      setLoading(false);
+    })
+    .catch((error) => {
+      console.error('Error fetching products:', error);
+      setLoading(false);
+    });
+}, []);
+
 
   useEffect(() => {
     fetch('https://fakestoreapi.com/products')
       .then((response) => response.json())
-      .then((data) => setProducts(data));
+      .then((data) => setProducts(data))
+      .catch((error) => console.error('Error fetching products:', error));
   }, []);
-
+  
   return (
     <div>
       <h1>Products</h1>

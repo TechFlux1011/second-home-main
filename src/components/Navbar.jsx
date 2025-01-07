@@ -7,6 +7,8 @@ import cartIcon from '../shopping-cart.png';
 import editIcon from '../components/assets/edit-icon.png'
 import profile from '../profile.jpg';
 import search from '../components/assets/search-icon.png'
+import SearchBar  from './SearchBar';
+import Home from './Home';
 
 const Navbar = ({ toggleCart, showCart, cart, removeFromCart, getTotalPrice }) => {
   const { user, logout } = useContext(AuthContext);
@@ -14,9 +16,17 @@ const Navbar = ({ toggleCart, showCart, cart, removeFromCart, getTotalPrice }) =
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const profileRef = useRef(null);
   const cartRef = useRef(null);
+  const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState(products);
+
 
   const handleProfileToggle = () => {
     setShowProfileDropdown((prev) => !prev);
+  };
+
+  const handleSearch = (searchTerm) => {
+    // Implement search logic here
+    console.log('Searching for:', searchTerm);
   };
 
   const handleClickOutside = (event) => {
@@ -46,9 +56,7 @@ const Navbar = ({ toggleCart, showCart, cart, removeFromCart, getTotalPrice }) =
         <div className="navbar-title">Second<span>Home</span></div>
       </div>
       <div className="search-container">
-        
-        <input type="text" className="search-input" placeholder='' >
-        </input>
+      <SearchBar products={products} onSearch={handleSearch} />
           <button className='search-icon'>
             <img src= {search} alt='search' />
           </button>
