@@ -1,31 +1,81 @@
 /* src/components/ProductList.css */
+
+/* Styling for the search bar container */
+.search-bar {
+  position: relative;
+}
+
+/* General styling for the search input */
+.search-input {
+  width: 45vw;
+  padding: 10px;
+}
+
+/* Styling for the suggestions dropdown */
+.suggestions-dropdown {
+  position: absolute;
+  width: 45vw;
+  top: 100%;
+  left: 1rem;
+  right: 0;
+  background: linear-gradient(145deg, #2d404f, #263643);
+  box-shadow:  6px 6px 17px #1f2c36,
+               -6px -6px 17px #354c5e;
+  border: 1px solid #d1a15c;
+  border-radius: 1.3rem;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+/* Styling for each search suggestion */
+.suggestion-item {
+  padding: 10px 20px;
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Styling for hovered suggestions */
+.suggestion-item:hover {
+  background-color: #f0f0f0;
+}
+
+/* Styling for the category section header */
+.category-header {
+  padding: 10px 20px;
+  background-color: #263643;
+  color: #d1a15c;
+  font-weight: bold;
+}
+
+/* Styling for the product list container */
 .product-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .product-list ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .product-list li {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 200px;
-    text-align: center;
-  }
-  
-  .product-image {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-  }
-  
-  
+  margin-top: 20px;
+}
+
+/* Styling for the product grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+/* Styling for each product card */
+.product-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for product images */
+.product-image {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
